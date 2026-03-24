@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DesarrollaGT — Inteligencia Inmobiliaria</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --dark:#0F2027; --dark2:#1a3040; --gold:#D4A843; --gold-light:#E8C06A; --light:#F8F9FB; --white:#fff; --text:#4A5568; --text-light:#94A3B8; --green:#00A344; --blue:#1565C0; --red:#C62828; --orange:#E65100; }
+    *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,32,39,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,168,67,.15);padding:0 40px;height:70px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--gold);} .nav-logo span{color:var(--text-light);font-weight:400;font-size:14px;font-family:'DM Sans',sans-serif;}
+    .nav-links{display:flex;gap:30px;align-items:center;} .nav-links a{color:#94B8D0;text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;} .nav-links a:hover{color:var(--gold);}
+    .nav-cta{background:linear-gradient(135deg,var(--gold),#C9982E);color:var(--dark)!important;padding:10px 24px;border-radius:8px;font-weight:700!important;transition:transform .2s,box-shadow .2s;} .nav-cta:hover{transform:translateY(-2px);box-shadow:0 4px 15px rgba(212,168,67,.4);}
+    .nav-mobile{display:none;background:none;border:none;color:var(--gold);font-size:28px;cursor:pointer;}
+    .hero{min-height:100vh;background:linear-gradient(160deg,#0F2027,#162832 40%,#1a3040 70%,#0F2027);display:flex;align-items:center;justify-content:center;padding:120px 40px 80px;position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(212,168,67,.08),transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(21,101,192,.06),transparent 50%);}
+    .hero-content{max-width:700px;text-align:center;position:relative;z-index:2;}
+    .hero-badge{display:inline-block;background:rgba(212,168,67,.12);border:1px solid rgba(212,168,67,.25);color:var(--gold);padding:6px 18px;border-radius:50px;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:30px;animation:fadeInDown .8s ease-out;}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,64px);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:24px;animation:fadeInUp .8s ease-out .2s both;}
+    .hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .hero p{font-size:18px;color:#94B8D0;line-height:1.7;margin-bottom:40px;max-width:550px;margin-left:auto;margin-right:auto;animation:fadeInUp .8s ease-out .4s both;}
+    .hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeInUp .8s ease-out .6s both;}
+    .btn-primary{background:linear-gradient(135deg,var(--gold),#C9982E);color:var(--dark);padding:16px 36px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none;transition:all .3s;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(212,168,67,.3);} .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(212,168,67,.5);}
+    .btn-secondary{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:16px 36px;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;transition:all .3s;} .btn-secondary:hover{background:rgba(255,255,255,.12);border-color:var(--gold);color:var(--gold);}
+    .hero-stats{display:flex;gap:40px;justify-content:center;margin-top:60px;animation:fadeInUp .8s ease-out .8s both;} .hero-stat{text-align:center;} .hero-stat .val{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--gold);} .hero-stat .lab{font-size:11px;color:#6a8090;text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
+    section{padding:100px 40px;} .container{max-width:1100px;margin:0 auto;}
+    .section-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+    .section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:900;color:var(--dark);line-height:1.2;margin-bottom:20px;}
+    .section-sub{font-size:16px;color:var(--text-light);max-width:600px;line-height:1.7;margin-bottom:50px;}
+    #features{background:var(--light);} .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
+    .feature-card{background:var(--white);border-radius:16px;padding:32px;border:1px solid #E8ECF1;transition:all .3s;} .feature-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08);border-color:var(--gold);}
+    .feature-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;}
+    .feature-card h3{font-size:17px;font-weight:700;color:var(--dark);margin-bottom:10px;} .feature-card p{font-size:13px;color:var(--text-light);line-height:1.6;}
+    .comparison-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.06);}
+    .comparison-table th{background:var(--dark);color:var(--gold);padding:16px 20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;text-align:center;} .comparison-table th:first-child{text-align:left;}
+    .comparison-table td{padding:14px 20px;border-bottom:1px solid #f0f0f5;font-size:13px;text-align:center;} .comparison-table td:first-child{text-align:left;font-weight:600;color:var(--dark);}
+    .comparison-table tr:hover td{background:#FFFBF0;} .check{color:var(--green);font-weight:700;font-size:18px;} .cross{color:#CBD5E0;font-size:18px;} .highlight-col{background:rgba(212,168,67,.04);}
+    #pricing{background:var(--light);} .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
+    .price-card{background:var(--white);border-radius:16px;padding:36px 28px;border:2px solid #E8ECF1;text-align:center;transition:all .3s;position:relative;} .price-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08);}
+    .price-card.featured{border-color:var(--gold);box-shadow:0 8px 30px rgba(212,168,67,.15);}
+    .price-card.featured::before{content:'MÁS POPULAR';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),#C9982E);color:var(--dark);padding:4px 16px;border-radius:50px;font-size:10px;font-weight:700;letter-spacing:1px;}
+    .price-name{font-size:14px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;}
+    .price-amount{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--dark);line-height:1;} .price-amount span{font-size:16px;font-weight:400;color:var(--text-light);}
+    .price-period{font-size:13px;color:var(--text-light);margin-bottom:24px;}
+    .price-features{list-style:none;text-align:left;margin-bottom:28px;} .price-features li{padding:8px 0;font-size:13px;color:var(--text);border-bottom:1px solid #f5f5f5;display:flex;align-items:center;gap:10px;}
+    .price-features li::before{content:'✓';color:var(--green);font-weight:700;min-width:16px;} .price-features li.disabled{color:#CBD5E0;} .price-features li.disabled::before{content:'—';color:#CBD5E0;}
+    .price-btn{display:block;width:100%;padding:14px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;text-align:center;transition:all .3s;}
+    .price-btn-primary{background:linear-gradient(135deg,var(--gold),#C9982E);color:var(--dark);} .price-btn-primary:hover{box-shadow:0 4px 15px rgba(212,168,67,.4);transform:translateY(-2px);}
+    .price-btn-outline{background:none;border:2px solid var(--dark);color:var(--dark);} .price-btn-outline:hover{background:var(--dark);color:var(--white);}
+    .social-proof{background:var(--dark);padding:60px 40px;text-align:center;}
+    .proof-text{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);max-width:700px;margin:0 auto 16px;line-height:1.5;font-style:italic;}
+    .proof-author{color:var(--gold);font-size:14px;font-weight:600;}
+    .cta{background:linear-gradient(160deg,var(--dark),#1a3040);text-align:center;padding:100px 40px;position:relative;}
+    .cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(212,168,67,.1),transparent 70%);}
+    .cta h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:900;color:var(--white);margin-bottom:16px;position:relative;}
+    .cta p{color:#94B8D0;font-size:16px;margin-bottom:36px;position:relative;} .cta .btn-primary{position:relative;font-size:17px;padding:18px 44px;}
+    .whatsapp-float{position:fixed;bottom:24px;right:24px;z-index:99;background:#25D366;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .3s;text-decoration:none;font-size:30px;} .whatsapp-float:hover{transform:scale(1.1);}
+    footer{background:#0a1a22;padding:40px;text-align:center;color:#4a6070;font-size:12px;} footer a{color:var(--gold);text-decoration:none;}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeInDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+    @media(max-width:768px){nav{padding:0 20px;} .nav-links{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(15,32,39,.98);flex-direction:column;padding:20px;gap:16px;} .nav-mobile{display:block;} section{padding:60px 20px;} .hero{padding:100px 20px 60px;} .hero p{font-size:15px;} .hero-stats{gap:20px;flex-wrap:wrap;} .hero-stat .val{font-size:28px;} .hero-buttons{flex-direction:column;align-items:center;} .btn-primary,.btn-secondary{width:100%;text-align:center;} .features-grid{grid-template-columns:1fr;} .pricing-grid{grid-template-columns:1fr;} .comparison-table{font-size:11px;} .comparison-table th,.comparison-table td{padding:10px 6px;} .proof-text{font-size:18px;} .price-amount{font-size:38px;}}
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">DesarrollaGT <span>Inteligencia Inmobiliaria</span></div>
+  <div class="nav-links">
+    <a href="#features">Funcionalidades</a>
+    <a href="#vs">Comparación</a>
+    <a href="#pricing">Planes</a>
+    <a href="https://wa.me/502XXXXXXXX?text=Quiero%20una%20demo%20de%20DesarrollaGT" class="nav-cta" target="_blank">Solicitar Demo</a>
+  </div>
+  <button class="nav-mobile" onclick="let l=document.querySelector('.nav-links');l.style.display=l.style.display==='flex'?'none':'flex'">☰</button>
+</nav>
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Plataforma #1 para Desarrolladores en Guatemala</div>
+    <h1>Decisiones de <em>Q100 millones</em> con datos, no con instinto</h1>
+    <p>Inteligencia de mercado inmobiliario con IA. 603+ proyectos analizados, predicciones de precio, radar de competencia y simulador financiero.</p>
+    <div class="hero-buttons">
+      <a href="https://wa.me/502XXXXXXXX?text=Quiero%20probar%20DesarrollaGT%20gratis%20por%207%20días" class="btn-primary" target="_blank">Probar 7 días gratis →</a>
+      <a href="#features" class="btn-secondary">Ver funcionalidades</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="val">603+</div><div class="lab">Proyectos</div></div>
+      <div class="hero-stat"><div class="val">19</div><div class="lab">Zonas</div></div>
+      <div class="hero-stat"><div class="val">24/7</div><div class="lab">IA Activa</div></div>
+      <div class="hero-stat"><div class="val">Semanal</div><div class="lab">Actualización IA</div></div>
+    </div>
+  </div>
+</section>
+<section id="features">
+  <div class="container">
+    <div class="section-label">Funcionalidades</div>
+    <h2 class="section-title">Todo lo que necesita un desarrollador,<br>en una sola plataforma</h2>
+    <p class="section-sub">Desde el análisis de zona hasta el pro-forma financiero. Actualizado automáticamente cada semana con IA.</p>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon" style="background:rgba(21,101,192,.1);color:var(--blue);">📍</div><h3>Mapa de Competencia</h3><p>603+ proyectos geolocalizados con Google Maps. Filtros por zona, precio, calificación y tipo. Datos completos de cada proyecto.</p></div>
+      <div class="feature-card"><div class="feature-icon" style="background:rgba(0,163,68,.1);color:var(--green);">📊</div><h3>Modelo Predictivo</h3><p>Proyecciones de precio a 6 y 12 meses por zona. Ranking de atractivo de inversión. Índice de saturación del mercado.</p></div>
+      <div class="feature-card"><div class="feature-icon" style="background:rgba(212,168,67,.1);color:var(--gold);">🧠</div><h3>Inteligencia con IA</h3><p>Busca noticias, detecta alertas, identifica oportunidades y genera recomendaciones. Aprende y mejora cada semana.</p></div>
+      <div class="feature-card"><div class="feature-icon" style="background:rgba(198,40,40,.1);color:var(--red);">🔴</div><h3>Radar de Competencia</h3><p>Detecta proyectos nuevos en preventa o construcción automáticamente. Los agrega a la base de datos sin intervención manual.</p></div>
+      <div class="feature-card"><div class="feature-icon" style="background:rgba(15,32,39,.1);color:var(--dark);">💰</div><h3>Simulador Financiero</h3><p>Pro-forma completa: terreno, construcción, costos blandos, financiamiento. TIR, VPN, DSCR, sensibilidad y escenarios.</p></div>
+      <div class="feature-card"><div class="feature-icon" style="background:rgba(230,81,0,.1);color:var(--orange);">📈</div><h3>Cap Rate y Absorción</h3><p>Rentabilidad por alquiler en 19 zonas. Curvas de absorción reales. Velocidad de venta por segmento de precio.</p></div>
+    </div>
+  </div>
+</section>
+<section id="vs">
+  <div class="container">
+    <div class="section-label">¿Por qué DesarrollaGT?</div>
+    <h2 class="section-title">Comparación honesta vs alternativas</h2>
+    <p class="section-sub">Lo que las consultoras cobran en miles de dólares por estudio, usted lo tiene actualizado cada semana.</p>
+    <table class="comparison-table">
+      <thead><tr><th>Característica</th><th>Consultoras</th><th>Portales</th><th>ChatGPT</th><th class="highlight-col" style="color:#fff;background:var(--gold);">DesarrollaGT</th></tr></thead>
+      <tbody>
+        <tr><td>Acceso desde teléfono</td><td class="cross">✕</td><td class="check">✓</td><td class="check">✓</td><td class="highlight-col check">✓</td></tr>
+        <tr><td>Actualización automática</td><td>Trimestral</td><td>Manual</td><td>Por consulta</td><td class="highlight-col"><b style="color:var(--green)">Semanal</b></td></tr>
+        <tr><td>IA integrada</td><td class="cross">✕</td><td class="cross">✕</td><td class="check">✓</td><td class="highlight-col check">✓</td></tr>
+        <tr><td>603+ proyectos reales</td><td class="check">✓</td><td class="cross">✕</td><td class="cross">✕</td><td class="highlight-col check">✓</td></tr>
+        <tr><td>Modelo predictivo</td><td class="cross">✕</td><td class="cross">✕</td><td class="cross">✕</td><td class="highlight-col check">✓</td></tr>
+        <tr><td>Radar de competencia</td><td class="cross">✕</td><td class="cross">✕</td><td class="cross">✕</td><td class="highlight-col check">✓</td></tr>
+        <tr><td>Simulador financiero</td><td class="cross">✕</td><td class="cross">✕</td><td class="cross">✕</td><td class="highlight-col check">✓</td></tr>
+        <tr><td>Self-service</td><td class="cross">✕</td><td class="check">✓</td><td class="check">✓</td><td class="highlight-col check">✓</td></tr>
+        <tr><td>Costo anual</td><td><b>$10,000+</b></td><td>Gratis</td><td>~$240</td><td class="highlight-col"><b style="color:var(--green)">Desde $780</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<div class="social-proof">
+  <p class="proof-text">"Un desarrollador que construye un edificio de Q100 millones no puede tomar decisiones de ubicación, precio y producto sin datos. DesarrollaGT le da esos datos por menos de lo que gasta en café al mes."</p>
+  <p class="proof-author">— La premisa de DesarrollaGT</p>
+</div>
+<section id="pricing">
+  <div class="container">
+    <div class="section-label">Planes</div>
+    <h2 class="section-title">Inversión que se paga sola<br>con una mejor decisión</h2>
+    <p class="section-sub">Todos los planes incluyen 7 días de prueba gratis. Sin compromiso.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-name">Starter</div>
+        <div class="price-amount">Q500<span>/mes</span></div>
+        <div class="price-period">~US$65/mes · Q5,400/año</div>
+        <ul class="price-features">
+          <li>Mapa de 603+ proyectos</li>
+          <li>Filtros por zona, precio, tipo</li>
+          <li>Análisis por zona y producto</li>
+          <li>Cap rates y absorción</li>
+          <li>Datos macro semanales</li>
+          <li>4 análisis IA / mes</li>
+          <li>2 búsquedas radar / mes</li>
+          <li class="disabled">Simulador financiero</li>
+          <li class="disabled">Reportes PDF</li>
+          <li class="disabled">API de datos</li>
+        </ul>
+        <a href="https://wa.me/502XXXXXXXX?text=Quiero%20el%20plan%20Starter%20de%20DesarrollaGT" class="price-btn price-btn-outline" target="_blank">Empezar Starter</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-name">Pro</div>
+        <div class="price-amount">Q1,500<span>/mes</span></div>
+        <div class="price-period">~US$195/mes · Q16,200/año</div>
+        <ul class="price-features">
+          <li>Todo lo del Starter</li>
+          <li>Simulador financiero completo</li>
+          <li>TIR, VPN, DSCR, Sensibilidad</li>
+          <li>Modelo predictivo de precios</li>
+          <li>Inteligencia IA ilimitada</li>
+          <li>8 búsquedas radar / mes</li>
+          <li>Base de datos crece con IA</li>
+          <li>Optimizador de producto</li>
+          <li class="disabled">Análisis personalizado</li>
+          <li class="disabled">API de datos</li>
+        </ul>
+        <a href="https://wa.me/502XXXXXXXX?text=Quiero%20el%20plan%20Pro%20de%20DesarrollaGT" class="price-btn price-btn-primary" target="_blank">Empezar Pro →</a>
+      </div>
+      <div class="price-card">
+        <div class="price-name">Enterprise</div>
+        <div class="price-amount">Q3,500<span>/mes</span></div>
+        <div class="price-period">~US$450/mes · Q37,800/año</div>
+        <ul class="price-features">
+          <li>Todo lo del Pro</li>
+          <li>Análisis IA de mi proyecto</li>
+          <li>Mi zona vs competencia directa</li>
+          <li>Inteligencia y radar ilimitados</li>
+          <li>Reportes PDF mensuales</li>
+          <li>API de datos (CSV, JSON)</li>
+          <li>Base de conocimiento IA</li>
+          <li>Soporte prioritario WhatsApp</li>
+          <li>Onboarding personalizado</li>
+          <li>Capacitación incluida</li>
+        </ul>
+        <a href="https://wa.me/502XXXXXXXX?text=Quiero%20el%20plan%20Enterprise%20de%20DesarrollaGT" class="price-btn price-btn-outline" target="_blank">Contactar Ventas</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cta">
+  <h2>¿Listo para tomar decisiones<br>con inteligencia de mercado?</h2>
+  <p>7 días gratis. Sin compromiso. Acceso completo.</p>
+  <a href="https://wa.me/502XXXXXXXX?text=Quiero%20probar%20DesarrollaGT%20gratis%20por%207%20días" class="btn-primary" target="_blank">Solicitar mi demo gratis →</a>
+</section>
+<footer>
+  <p style="margin-bottom:8px;"><strong style="color:var(--gold);font-family:'Playfair Display',serif;font-size:16px;">DesarrollaGT</strong></p>
+  <p>Inteligencia Inmobiliaria para Desarrolladores en Guatemala</p>
+  <p style="margin-top:12px;">© 2026 DesarrollaGT. Todos los derechos reservados.</p>
+  <p style="margin-top:8px;"><a href="https://wa.me/502XXXXXXXX">WhatsApp</a> · <a href="/cdn-cgi/l/email-protection#6315060d170210230706100211110c0f0f0204174d000c0e"><span class="__cf_email__" data-cfemail="1a6c7f746e7b695a7e7f697b68687576767b7d6e34797577">[email&#160;protected]</span></a></p>
+</footer>
+<a href="https:
