@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DesarrollaGT — Inteligencia Inmobiliaria</title>
+  <title>DesarrollaGT — Inteligencia Inmobiliaria para Guatemala</title>
+  <meta name="description" content="Inteligencia de mercado inmobiliario para Guatemala: agentes de IA recopilan datos de 603+ proyectos. Análisis por zona, simulador financiero, radar de competencia y predicción de precios.">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root { --dark:#0F2027; --dark2:#1a3040; --gold:#D4A843; --gold-light:#E8C06A; --light:#F8F9FB; --white:#fff; --text:#4A5568; --text-light:#94A3B8; --green:#00A344; --blue:#1565C0; --red:#C62828; --orange:#E65100; }
@@ -61,34 +62,71 @@
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
     @keyframes fadeInDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
     @media(max-width:768px){nav{padding:0 20px;} .nav-links{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(15,32,39,.98);flex-direction:column;padding:20px;gap:16px;} .nav-mobile{display:block;} section{padding:60px 20px;} .hero{padding:100px 20px 60px;} .hero p{font-size:15px;} .hero-stats{gap:20px;flex-wrap:wrap;} .hero-stat .val{font-size:28px;} .hero-buttons{flex-direction:column;align-items:center;} .btn-primary,.btn-secondary{width:100%;text-align:center;} .features-grid{grid-template-columns:1fr;} .pricing-grid{grid-template-columns:1fr;} .comparison-table{font-size:11px;} .comparison-table th,.comparison-table td{padding:10px 6px;} .proof-text{font-size:18px;} .price-amount{font-size:38px;} div[style*='flex:0 0 200px']{display:none !important;} div[style*='flex-direction:row-reverse']{flex-direction:column !important;}}
+    .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:16px;}
+    .steps-grid{grid-template-columns:repeat(4,1fr);} @media(max-width:1000px){.steps-grid{grid-template-columns:repeat(2,1fr);}} @media(max-width:600px){.steps-grid{grid-template-columns:1fr;}}
+    .step-num{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
   </style>
 </head>
 <body>
 <nav>
   <div class="nav-logo">DesarrollaGT <span>Inteligencia Inmobiliaria</span></div>
   <div class="nav-links">
+    <a href="#como-funciona">Cómo funciona</a>
     <a href="#features">Funcionalidades</a>
     <a href="#vs">Comparación</a>
     <a href="#pricing">Planes</a>
     <a href="https://wa.me/50242206317?text=Hola,%20quiero%20información%20sobre%20los%20planes%20de%20DesarrollaGT" class="nav-cta" target="_blank">Contactar por WhatsApp</a>
   </div>
-  <button class="nav-mobile" onclick="let l=document.querySelector('.nav-links');l.style.display=l.style.display==='flex'?'none':'flex'">☰</button>
+  <button class="nav-mobile" aria-label="Abrir menú" onclick="let l=document.querySelector('.nav-links');l.style.display=l.style.display==='flex'?'none':'flex'">☰</button>
 </nav>
 <section class="hero">
   <div class="hero-content">
     <div class="hero-badge">Inteligencia Inmobiliaria para Guatemala</div>
-    <h1>Toma la <em>mejor decisión</em> con datos reales</h1>
-    <p>La plataforma de inteligencia de mercado inmobiliario con IA. 603+ proyectos, predicciones de precio por zona, radar de competencia y simulador financiero. Para desarrolladores, inversionistas y profesionales inmobiliarios.</p>
+    <h1>Tome la <em>mejor decisión</em> con datos reales</h1>
+    <p>Múltiples agentes de IA, cada uno con su propia conexión de Chrome, recorren en paralelo los sitios de desarrolladoras, portales inmobiliarios y noticias para mantener al día 603+ proyectos. Usted recibe análisis por zona, simulador financiero, radar de competencia y predicciones de precio. Para desarrolladores, inversionistas y profesionales inmobiliarios.</p>
     <div class="hero-buttons">
       <a href="https://wa.me/50242206317?text=Quiero%20información%20sobre%20DesarrollaGT" class="btn-primary" target="_blank">Comenzar ahora →</a>
       <a href="#pricing" class="btn-secondary">Ver planes y precios</a>
-      <a href="#features" class="btn-secondary">Ver funcionalidades</a>
+      <a href="#como-funciona" class="btn-secondary">Cómo funciona</a>
     </div>
     <div class="hero-stats">
       <div class="hero-stat"><div class="val">603+</div><div class="lab">Proyectos</div></div>
       <div class="hero-stat"><div class="val">19</div><div class="lab">Zonas</div></div>
-      <div class="hero-stat"><div class="val">24/7</div><div class="lab">IA Activa</div></div>
-      <div class="hero-stat"><div class="val">Semanal</div><div class="lab">Actualización IA</div></div>
+      <div class="hero-stat"><div class="val">24/7</div><div class="lab">Agentes IA activos</div></div>
+      <div class="hero-stat"><div class="val">Semanal</div><div class="lab">Actualización de datos</div></div>
+    </div>
+  </div>
+</section>
+<section id="como-funciona">
+  <div class="container">
+    <div class="section-label">Cómo funciona</div>
+    <h2 class="section-title">Agentes de IA que recorren<br>el mercado por usted</h2>
+    <p class="section-sub">Nuestros agentes trabajan en paralelo, cada uno con su propia conexión de navegador Chrome, y visitan cientos de páginas para mantener la información al día sin depender de encuestas ni reportes manuales.</p>
+    <div class="features-grid steps-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(21,101,192,.1);">🤖</div>
+        <div class="step-num">Paso 1</div>
+        <h3>Múltiples agentes en paralelo</h3>
+        <p>Varios agentes de IA trabajan al mismo tiempo, cada uno con su propia conexión de Chrome. Así cubrimos más sitios en menos tiempo y la información no se queda atrás.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(0,163,68,.1);">🌐</div>
+        <div class="step-num">Paso 2</div>
+        <h3>Lectura de páginas reales</h3>
+        <p>Los agentes visitan sitios de desarrolladoras, portales inmobiliarios, medios de noticias y fuentes económicas. De cada proyecto extraen precio, precio por m², tipo de producto, etapa (preventa o construcción) y ubicación.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(212,168,67,.1);">🔄</div>
+        <div class="step-num">Paso 3</div>
+        <h3>Base de datos siempre al día</h3>
+        <p>Lo que encuentran se organiza, se compara con la base de datos y se actualiza. Si un agente encuentra un proyecto que aún no teníamos, el radar lo agrega automáticamente.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(230,81,0,.1);">📊</div>
+        <div class="step-num">Paso 4</div>
+        <h3>Análisis listo para decidir</h3>
+        <p>Con los datos frescos, la plataforma recalcula mapas, análisis por zona, cap rates, absorción y proyecciones de precio, y la IA le envía alertas y recomendaciones cada semana.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -96,7 +134,7 @@
   <div class="container">
     <div class="section-label">Funcionalidades</div>
     <h2 class="section-title">Todo lo que necesita para<br>invertir con confianza</h2>
-    <p class="section-sub">Cada plan incluye más herramientas. Aquí le explicamos qué hace cada una y en qué plan está disponible.</p>
+    <p class="section-sub">Cada herramienta se alimenta de los datos que recopilan nuestros agentes. Aquí le explicamos qué hace cada una y en qué plan está disponible.</p>
 
     <!-- Feature 1: Mapa -->
     <div style="display:flex; gap:30px; align-items:center; margin-bottom:50px; flex-wrap:wrap;">
@@ -108,7 +146,7 @@
             <span style="font-size:11px; background:#E8F5E9; color:#00A344; padding:2px 10px; border-radius:50px; font-weight:600;">Todos los planes</span>
           </div>
         </div>
-        <p style="font-size:14px; color:#4A5568; line-height:1.7;">Vea los 603+ proyectos residenciales de Guatemala en un mapa interactivo. Cada punto muestra nombre, zona, precio por M2, calificación de inversión y cuota mensual estimada. Filtre por zona, rango de precio, tipo de proyecto y calificación para encontrar exactamente lo que busca.</p>
+        <p style="font-size:14px; color:#4A5568; line-height:1.7;">Explore los 603+ proyectos residenciales de Guatemala en un mapa interactivo. Cada proyecto muestra nombre, zona, precio por m², calificación de inversión y cuota mensual estimada. Filtre por zona, rango de precio, tipo de proyecto y calificación para encontrar exactamente lo que busca.</p>
       </div>
       <div style="flex:0 0 200px; text-align:center;">
         <div style="font-size:64px;">🗺️</div>
@@ -125,7 +163,7 @@
             <span style="font-size:11px; background:#E8F5E9; color:#00A344; padding:2px 10px; border-radius:50px; font-weight:600;">Todos los planes</span>
           </div>
         </div>
-        <p style="font-size:14px; color:#4A5568; line-height:1.7;">Compare zonas lado a lado: cuántos proyectos hay, precio mediana, porcentaje de proyectos buenos, cap rate y absorción. Vea qué tipo de producto domina en cada zona y reciba recomendaciones basadas en datos reales, no en opiniones.</p>
+        <p style="font-size:14px; color:#4A5568; line-height:1.7;">Compare zonas lado a lado: número de proyectos, precio mediano, porcentaje de proyectos bien calificados, cap rate y absorción. Descubra qué tipo de producto domina en cada zona y reciba recomendaciones basadas en datos reales, no en opiniones.</p>
       </div>
       <div style="flex:0 0 200px; text-align:center;">
         <div style="font-size:64px;">📊</div>
@@ -142,7 +180,7 @@
             <span style="font-size:11px; background:#E8F5E9; color:#00A344; padding:2px 10px; border-radius:50px; font-weight:600;">Todos los planes</span>
           </div>
         </div>
-        <p style="font-size:14px; color:#4A5568; line-height:1.7;">Arme su pro-forma completa: terreno, construcción, costos blandos, financiamiento bancario. Vea la TIR, VPN, DSCR, análisis de sensibilidad con gráfico tornado, y escenarios pesimista/base/optimista. Compare su proyecto en diferentes zonas automáticamente.</p>
+        <p style="font-size:14px; color:#4A5568; line-height:1.7;">Arme su pro-forma completa: terreno, construcción, costos blandos y financiamiento bancario. Obtenga TIR, VPN y DSCR, análisis de sensibilidad con gráfico tornado y escenarios pesimista, base y optimista. Además, compare automáticamente cómo rendiría su proyecto en diferentes zonas.</p>
       </div>
       <div style="flex:0 0 200px; text-align:center;">
         <div style="font-size:64px;">💰</div>
@@ -158,11 +196,11 @@
             <h3 style="font-size:20px; font-weight:700; color:#0F2027; margin:0;">Inteligencia con IA</h3>
             <div style="margin-top:4px;">
               <span style="font-size:11px; background:#FFF3E0; color:#E65100; padding:2px 10px; border-radius:50px; font-weight:600;">Starter: 4/mes</span>
-              <span style="font-size:11px; background:#E3F2FD; color:#1565C0; padding:2px 10px; border-radius:50px; font-weight:600;">Pro: ilimitado</span>
+              <span style="font-size:11px; background:#E3F2FD; color:#1565C0; padding:2px 10px; border-radius:50px; font-weight:600;">Pro y Enterprise: ilimitado</span>
             </div>
           </div>
         </div>
-        <p style="font-size:14px; color:#4A5568; line-height:1.7;">La IA busca noticias del mercado inmobiliario, detecta alertas de riesgo u oportunidad, analiza tendencias macroeconómicas y genera recomendaciones personalizadas. Cada semana acumula más conocimiento y sus análisis son más relevantes. Incluye datos de PIB, inflación, tasas, remesas y FAPRIVI actualizados.</p>
+        <p style="font-size:14px; color:#4A5568; line-height:1.7;">La IA analiza las noticias y páginas que recopilan los agentes, detecta alertas de riesgo y oportunidades, sigue las tendencias macroeconómicas y genera recomendaciones personalizadas. Su base de conocimiento crece cada semana, así que los análisis son cada vez más relevantes. Incluye datos actualizados de PIB, inflación, tasas, remesas y FAPRIVI.</p>
       </div>
       <div style="flex:0 0 200px; text-align:center;">
         <div style="font-size:64px;">🧠</div>
@@ -175,19 +213,40 @@
         <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
           <div style="width:48px; height:48px; border-radius:12px; background:rgba(198,40,40,.1); display:flex; align-items:center; justify-content:center; font-size:22px;">🔴</div>
           <div>
-            <h3 style="font-size:20px; font-weight:700; color:#0F2027; margin:0;">Radar de Competencia + Modelo Predictivo</h3>
-            <span style="font-size:11px; background:#E3F2FD; color:#1565C0; padding:2px 10px; border-radius:50px; font-weight:600;">Plan Pro y Enterprise</span>
+            <h3 style="font-size:20px; font-weight:700; color:#0F2027; margin:0;">Radar de Competencia</h3>
+            <div style="margin-top:4px;">
+              <span style="font-size:11px; background:#FFF3E0; color:#E65100; padding:2px 10px; border-radius:50px; font-weight:600;">Starter: 2/mes</span>
+              <span style="font-size:11px; background:#E3F2FD; color:#1565C0; padding:2px 10px; border-radius:50px; font-weight:600;">Pro: 8/mes</span>
+              <span style="font-size:11px; background:linear-gradient(135deg,#D4A843,#C9982E); color:#0F2027; padding:2px 10px; border-radius:50px; font-weight:700;">Enterprise: ilimitado</span>
+            </div>
           </div>
         </div>
-        <p style="font-size:14px; color:#4A5568; line-height:1.7;">La IA busca automáticamente proyectos nuevos en preventa o construcción que no están en la base de datos y los agrega. Además, proyecta precios a 6 y 12 meses por zona usando inflación, remesas y PIB. Incluye ranking de zonas por atractivo de inversión e índice de saturación del mercado.</p>
+        <p style="font-size:14px; color:#4A5568; line-height:1.7;">Los agentes recorren sitios de desarrolladoras y portales en busca de proyectos nuevos en preventa o construcción que aún no están en la base de datos, y los agregan automáticamente. Entérese de la nueva competencia en su zona antes que los demás.</p>
       </div>
       <div style="flex:0 0 200px; text-align:center;">
         <div style="font-size:64px;">📡</div>
       </div>
     </div>
 
-    <!-- Feature 6: Enterprise -->
-    <div style="display:flex; gap:30px; align-items:center; margin-bottom:30px; flex-wrap:wrap; flex-direction:row-reverse;">
+    <!-- Feature 6: Modelo Predictivo -->
+    <div style="display:flex; gap:30px; align-items:center; margin-bottom:50px; flex-wrap:wrap; flex-direction:row-reverse;">
+      <div style="flex:1; min-width:280px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+          <div style="width:48px; height:48px; border-radius:12px; background:rgba(230,81,0,.1); display:flex; align-items:center; justify-content:center; font-size:22px;">📈</div>
+          <div>
+            <h3 style="font-size:20px; font-weight:700; color:#0F2027; margin:0;">Modelo Predictivo de Precios</h3>
+            <span style="font-size:11px; background:#E3F2FD; color:#1565C0; padding:2px 10px; border-radius:50px; font-weight:600;">Plan Pro y Enterprise</span>
+          </div>
+        </div>
+        <p style="font-size:14px; color:#4A5568; line-height:1.7;">Proyecta precios a 6 y 12 meses por zona usando inflación, remesas y PIB. Incluye un ranking de zonas por atractivo de inversión y un índice de saturación del mercado, para saber dónde conviene lanzar un proyecto y dónde no.</p>
+      </div>
+      <div style="flex:0 0 200px; text-align:center;">
+        <div style="font-size:64px;">📈</div>
+      </div>
+    </div>
+
+    <!-- Feature 7: Enterprise -->
+    <div style="display:flex; gap:30px; align-items:center; margin-bottom:30px; flex-wrap:wrap;">
       <div style="flex:1; min-width:280px;">
         <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
           <div style="width:48px; height:48px; border-radius:12px; background:rgba(212,168,67,.15); display:flex; align-items:center; justify-content:center; font-size:22px;">👔</div>
@@ -196,7 +255,7 @@
             <span style="font-size:11px; background:linear-gradient(135deg,#D4A843,#C9982E); color:#0F2027; padding:2px 10px; border-radius:50px; font-weight:700;">Solo Enterprise</span>
           </div>
         </div>
-        <p style="font-size:14px; color:#4A5568; line-height:1.7;">Configure su proyecto específico (zona, tipo, unidades, precio) y la IA le da un análisis personalizado: posicionamiento vs competencia, absorción estimada, fortalezas, riesgos y recomendaciones. Descargue reportes PDF mensuales y acceda a toda la data en CSV y JSON para sus propios análisis.</p>
+        <p style="font-size:14px; color:#4A5568; line-height:1.7;">Configure su proyecto (zona, tipo, número de unidades y precio) y la IA le entrega un análisis personalizado: posicionamiento frente a la competencia, absorción estimada, fortalezas, riesgos y recomendaciones. Además, reciba reportes PDF mensuales y descargue toda la data en CSV y JSON para sus propios análisis.</p>
       </div>
       <div style="flex:0 0 200px; text-align:center;">
         <div style="font-size:64px;">👔</div>
@@ -207,22 +266,25 @@
 <section id="vs">
   <div class="container">
     <div class="section-label">¿Por qué DesarrollaGT?</div>
-    <h2 class="section-title">Comparación honesta vs alternativas</h2>
-    <p class="section-sub">Lo que las consultoras cobran en miles de dólares por estudio, usted lo tiene actualizado cada semana.</p>
-    <table class="comparison-table">
-      <thead><tr><th>Característica</th><th>Consultoras</th><th>Portales</th><th>ChatGPT</th><th class="highlight-col" style="color:#fff;background:var(--gold);">DesarrollaGT</th></tr></thead>
-      <tbody>
-        <tr><td>Acceso desde teléfono</td><td class="cross">✕</td><td class="check">✓</td><td class="check">✓</td><td class="highlight-col check">✓</td></tr>
-        <tr><td>Actualización automática</td><td>Trimestral</td><td>Manual</td><td>Por consulta</td><td class="highlight-col"><b style="color:var(--green)">Semanal</b></td></tr>
-        <tr><td>IA integrada</td><td class="cross">✕</td><td class="cross">✕</td><td class="check">✓</td><td class="highlight-col check">✓</td></tr>
-        <tr><td>603+ proyectos reales</td><td class="check">✓</td><td class="cross">✕</td><td class="cross">✕</td><td class="highlight-col check">✓</td></tr>
-        <tr><td>Modelo predictivo</td><td class="cross">✕</td><td class="cross">✕</td><td class="cross">✕</td><td class="highlight-col check">✓</td></tr>
-        <tr><td>Radar de competencia</td><td class="cross">✕</td><td class="cross">✕</td><td class="cross">✕</td><td class="highlight-col check">✓</td></tr>
-        <tr><td>Simulador financiero</td><td class="cross">✕</td><td class="cross">✕</td><td class="cross">✕</td><td class="highlight-col check">✓</td></tr>
-        <tr><td>Self-service</td><td class="cross">✕</td><td class="check">✓</td><td class="check">✓</td><td class="highlight-col check">✓</td></tr>
-        <tr><td>Costo anual</td><td><b>$10,000+</b></td><td>Gratis</td><td>~$240</td><td class="highlight-col"><b style="color:var(--green)">Desde $840</b></td></tr>
-      </tbody>
-    </table>
+    <h2 class="section-title">Comparación honesta con las alternativas</h2>
+    <p class="section-sub">Lo que una consultora cobra en miles de dólares por un estudio puntual, nuestros agentes lo mantienen actualizado cada semana.</p>
+    <div class="table-wrap">
+      <table class="comparison-table">
+        <thead><tr><th>Característica</th><th>Consultoras</th><th>Portales</th><th>ChatGPT</th><th class="highlight-col" style="color:#fff;background:var(--gold);">DesarrollaGT</th></tr></thead>
+        <tbody>
+          <tr><td>Acceso desde teléfono</td><td class="cross">✕</td><td class="check">✓</td><td class="check">✓</td><td class="highlight-col check">✓</td></tr>
+          <tr><td>Actualización automática</td><td>Trimestral</td><td>Manual</td><td>Por consulta</td><td class="highlight-col"><b style="color:var(--green)">Semanal</b></td></tr>
+          <tr><td>Recolección de datos</td><td>Manual</td><td>Lo que publica cada anunciante</td><td>Una búsqueda a la vez</td><td class="highlight-col"><b style="color:var(--green)">Múltiples agentes IA en paralelo</b></td></tr>
+          <tr><td>IA integrada</td><td class="cross">✕</td><td class="cross">✕</td><td class="check">✓</td><td class="highlight-col check">✓</td></tr>
+          <tr><td>603+ proyectos reales</td><td class="check">✓</td><td class="cross">✕</td><td class="cross">✕</td><td class="highlight-col check">✓</td></tr>
+          <tr><td>Modelo predictivo</td><td class="cross">✕</td><td class="cross">✕</td><td class="cross">✕</td><td class="highlight-col check">✓</td></tr>
+          <tr><td>Radar de competencia</td><td class="cross">✕</td><td class="cross">✕</td><td class="cross">✕</td><td class="highlight-col check">✓</td></tr>
+          <tr><td>Simulador financiero</td><td class="cross">✕</td><td class="cross">✕</td><td class="cross">✕</td><td class="highlight-col check">✓</td></tr>
+          <tr><td>Self-service</td><td class="cross">✕</td><td class="check">✓</td><td class="check">✓</td><td class="highlight-col check">✓</td></tr>
+          <tr><td>Costo anual</td><td><b>$10,000+</b></td><td>Gratis</td><td>~$240</td><td class="highlight-col"><b style="color:var(--green)">Desde $840</b></td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 <div class="social-proof">
@@ -233,7 +295,7 @@
   <div class="container">
     <div class="section-label">Planes</div>
     <h2 class="section-title">Inversión que se paga sola<br>con una mejor decisión</h2>
-    <p class="section-sub">Escríbanos por WhatsApp para activar su plan.</p>
+    <p class="section-sub">Elija su plan y escríbanos por WhatsApp para activarlo. Precios en dólares; el equivalente en quetzales es aproximado.</p>
     <div class="pricing-grid">
       <div class="price-card">
         <div class="price-name">Starter</div>
@@ -241,10 +303,10 @@
         <div class="price-period">~Q540/mes · $840/año</div>
         <ul class="price-features">
           <li>Mapa de 603+ proyectos</li>
-          <li>Filtros por zona, precio, tipo</li>
+          <li>Filtros por zona, precio y tipo</li>
           <li>Análisis por zona y producto</li>
           <li>Cap rates y absorción</li>
-          <li>Simulador financiero completo</li>
+          <li>Simulador financiero (TIR, VPN, DSCR)</li>
           <li>Datos macro semanales</li>
           <li>4 análisis IA / mes</li>
           <li>2 búsquedas radar / mes</li>
@@ -260,11 +322,10 @@
         <ul class="price-features">
           <li>Todo lo del Starter</li>
           <li>Modelo predictivo de precios</li>
-          <li>Radar de nueva competencia</li>
-          <li>TIR, VPN, DSCR, Sensibilidad</li>
+          <li>Ranking de zonas por atractivo</li>
+          <li>Índice de saturación del mercado</li>
           <li>Inteligencia IA ilimitada</li>
           <li>8 búsquedas radar / mes</li>
-          <li>Ranking de zonas por atractivo</li>
           <li>Optimizador de producto</li>
           <li class="disabled">Análisis personalizado IA</li>
           <li class="disabled">Reportes PDF y API datos</li>
@@ -277,8 +338,8 @@
         <div class="price-period">~Q3,875/mes · $6,000/año</div>
         <ul class="price-features">
           <li>Todo lo del Pro</li>
-          <li>Análisis IA de mi proyecto</li>
-          <li>Mi zona vs competencia directa</li>
+          <li>Análisis IA de su proyecto</li>
+          <li>Su proyecto vs competencia directa</li>
           <li>Inteligencia y radar ilimitados</li>
           <li>Reportes PDF mensuales</li>
           <li>API de datos (CSV, JSON)</li>
@@ -294,7 +355,7 @@
 </section>
 <section class="cta">
   <h2>¿Listo para tomar decisiones<br>con inteligencia de mercado?</h2>
-  <p>Escríbanos por WhatsApp y active su plan hoy.</p>
+  <p>Escríbanos por WhatsApp y active su plan hoy mismo.</p>
   <a href="https://wa.me/50242206317?text=Quiero%20activar%20mi%20plan%20de%20DesarrollaGT" class="btn-primary" target="_blank">Escribir por WhatsApp →</a>
 </section>
 <footer>
@@ -303,6 +364,6 @@
   <p style="margin-top:12px;">© 2026 DesarrollaGT. Todos los derechos reservados.</p>
   <p style="margin-top:8px;"><a href="https://wa.me/50242206317" style="color:var(--gold);">WhatsApp: +502 4220-6317</a></p>
 </footer>
-<a href="https:
-
-  
+<a href="https://wa.me/50242206317?text=Hola,%20quiero%20información%20sobre%20DesarrollaGT" class="whatsapp-float" target="_blank" aria-label="Escribir por WhatsApp">💬</a>
+</body>
+</html>
