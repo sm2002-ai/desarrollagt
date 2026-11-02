@@ -1,308 +1,558 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-GT">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DesarrollaGT — Inteligencia Inmobiliaria</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root { --dark:#0F2027; --dark2:#1a3040; --gold:#D4A843; --gold-light:#E8C06A; --light:#F8F9FB; --white:#fff; --text:#4A5568; --text-light:#94A3B8; --green:#00A344; --blue:#1565C0; --red:#C62828; --orange:#E65100; }
-    *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
-    body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;}
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,32,39,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,168,67,.15);padding:0 40px;height:70px;display:flex;align-items:center;justify-content:space-between;}
-    .nav-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--gold);} .nav-logo span{color:var(--text-light);font-weight:400;font-size:14px;font-family:'DM Sans',sans-serif;}
-    .nav-links{display:flex;gap:30px;align-items:center;} .nav-links a{color:#94B8D0;text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;} .nav-links a:hover{color:var(--gold);}
-    .nav-cta{background:linear-gradient(135deg,var(--gold),#C9982E);color:var(--dark)!important;padding:10px 24px;border-radius:8px;font-weight:700!important;transition:transform .2s,box-shadow .2s;} .nav-cta:hover{transform:translateY(-2px);box-shadow:0 4px 15px rgba(212,168,67,.4);}
-    .nav-mobile{display:none;background:none;border:none;color:var(--gold);font-size:28px;cursor:pointer;}
-    .hero{min-height:100vh;background:linear-gradient(160deg,#0F2027,#162832 40%,#1a3040 70%,#0F2027);display:flex;align-items:center;justify-content:center;padding:120px 40px 80px;position:relative;overflow:hidden;}
-    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(212,168,67,.08),transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(21,101,192,.06),transparent 50%);}
-    .hero-content{max-width:700px;text-align:center;position:relative;z-index:2;}
-    .hero-badge{display:inline-block;background:rgba(212,168,67,.12);border:1px solid rgba(212,168,67,.25);color:var(--gold);padding:6px 18px;border-radius:50px;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:30px;animation:fadeInDown .8s ease-out;}
-    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,64px);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:24px;animation:fadeInUp .8s ease-out .2s both;}
-    .hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-    .hero p{font-size:18px;color:#94B8D0;line-height:1.7;margin-bottom:40px;max-width:550px;margin-left:auto;margin-right:auto;animation:fadeInUp .8s ease-out .4s both;}
-    .hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeInUp .8s ease-out .6s both;}
-    .btn-primary{background:linear-gradient(135deg,var(--gold),#C9982E);color:var(--dark);padding:16px 36px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none;transition:all .3s;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(212,168,67,.3);} .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(212,168,67,.5);}
-    .btn-secondary{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:16px 36px;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;transition:all .3s;} .btn-secondary:hover{background:rgba(255,255,255,.12);border-color:var(--gold);color:var(--gold);}
-    .hero-stats{display:flex;gap:40px;justify-content:center;margin-top:60px;animation:fadeInUp .8s ease-out .8s both;} .hero-stat{text-align:center;} .hero-stat .val{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--gold);} .hero-stat .lab{font-size:11px;color:#6a8090;text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
-    section{padding:100px 40px;} .container{max-width:1100px;margin:0 auto;}
-    .section-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
-    .section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:900;color:var(--dark);line-height:1.2;margin-bottom:20px;}
-    .section-sub{font-size:16px;color:var(--text-light);max-width:600px;line-height:1.7;margin-bottom:50px;}
-    #features{background:var(--light);} .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
-    .feature-card{background:var(--white);border-radius:16px;padding:32px;border:1px solid #E8ECF1;transition:all .3s;} .feature-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08);border-color:var(--gold);}
-    .feature-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;}
-    .feature-card h3{font-size:17px;font-weight:700;color:var(--dark);margin-bottom:10px;} .feature-card p{font-size:13px;color:var(--text-light);line-height:1.6;}
-    .comparison-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.06);}
-    .comparison-table th{background:var(--dark);color:var(--gold);padding:16px 20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;text-align:center;} .comparison-table th:first-child{text-align:left;}
-    .comparison-table td{padding:14px 20px;border-bottom:1px solid #f0f0f5;font-size:13px;text-align:center;} .comparison-table td:first-child{text-align:left;font-weight:600;color:var(--dark);}
-    .comparison-table tr:hover td{background:#FFFBF0;} .check{color:var(--green);font-weight:700;font-size:18px;} .cross{color:#CBD5E0;font-size:18px;} .highlight-col{background:rgba(212,168,67,.04);}
-    #pricing{background:var(--light);} .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
-    .price-card{background:var(--white);border-radius:16px;padding:36px 28px;border:2px solid #E8ECF1;text-align:center;transition:all .3s;position:relative;} .price-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08);}
-    .price-card.featured{border-color:var(--gold);box-shadow:0 8px 30px rgba(212,168,67,.15);}
-    .price-card.featured::before{content:'MÁS POPULAR';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),#C9982E);color:var(--dark);padding:4px 16px;border-radius:50px;font-size:10px;font-weight:700;letter-spacing:1px;}
-    .price-name{font-size:14px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;}
-    .price-amount{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--dark);line-height:1;} .price-amount span{font-size:16px;font-weight:400;color:var(--text-light);}
-    .price-period{font-size:13px;color:var(--text-light);margin-bottom:24px;}
-    .price-features{list-style:none;text-align:left;margin-bottom:28px;} .price-features li{padding:8px 0;font-size:13px;color:var(--text);border-bottom:1px solid #f5f5f5;display:flex;align-items:center;gap:10px;}
-    .price-features li::before{content:'✓';color:var(--green);font-weight:700;min-width:16px;} .price-features li.disabled{color:#CBD5E0;} .price-features li.disabled::before{content:'—';color:#CBD5E0;}
-    .price-btn{display:block;width:100%;padding:14px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;text-align:center;transition:all .3s;}
-    .price-btn-primary{background:linear-gradient(135deg,var(--gold),#C9982E);color:var(--dark);} .price-btn-primary:hover{box-shadow:0 4px 15px rgba(212,168,67,.4);transform:translateY(-2px);}
-    .price-btn-outline{background:none;border:2px solid var(--dark);color:var(--dark);} .price-btn-outline:hover{background:var(--dark);color:var(--white);}
-    .social-proof{background:var(--dark);padding:60px 40px;text-align:center;}
-    .proof-text{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);max-width:700px;margin:0 auto 16px;line-height:1.5;font-style:italic;}
-    .proof-author{color:var(--gold);font-size:14px;font-weight:600;}
-    .cta{background:linear-gradient(160deg,var(--dark),#1a3040);text-align:center;padding:100px 40px;position:relative;}
-    .cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(212,168,67,.1),transparent 70%);}
-    .cta h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:900;color:var(--white);margin-bottom:16px;position:relative;}
-    .cta p{color:#94B8D0;font-size:16px;margin-bottom:36px;position:relative;} .cta .btn-primary{position:relative;font-size:17px;padding:18px 44px;}
-    .whatsapp-float{position:fixed;bottom:24px;right:24px;z-index:99;background:#25D366;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .3s;text-decoration:none;font-size:30px;} .whatsapp-float:hover{transform:scale(1.1);}
-    footer{background:#0a1a22;padding:40px;text-align:center;color:#4a6070;font-size:12px;} footer a{color:var(--gold);text-decoration:none;}
-    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
-    @keyframes fadeInDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
-    @media(max-width:768px){nav{padding:0 20px;} .nav-links{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(15,32,39,.98);flex-direction:column;padding:20px;gap:16px;} .nav-mobile{display:block;} section{padding:60px 20px;} .hero{padding:100px 20px 60px;} .hero p{font-size:15px;} .hero-stats{gap:20px;flex-wrap:wrap;} .hero-stat .val{font-size:28px;} .hero-buttons{flex-direction:column;align-items:center;} .btn-primary,.btn-secondary{width:100%;text-align:center;} .features-grid{grid-template-columns:1fr;} .pricing-grid{grid-template-columns:1fr;} .comparison-table{font-size:11px;} .comparison-table th,.comparison-table td{padding:10px 6px;} .proof-text{font-size:18px;} .price-amount{font-size:38px;} div[style*='flex:0 0 200px']{display:none !important;} div[style*='flex-direction:row-reverse']{flex-direction:column !important;}}
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DesarrollaGT — Estudio de mercado inmobiliario en Guatemala</title>
+  <meta name="description" content="Mapa de 600+ proyectos, precio por m² por zona, absorción, cap rate y simulador TIR/VPN para desarrollar e invertir en Guatemala. Desde US$70/mes.">
+  <link rel="canonical" href="https://sm2002-ai.github.io/desarrollagt/">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="theme-color" content="#0F2027">
+  <meta name="author" content="DesarrollaGT">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_GT">
+  <meta property="og:site_name" content="DesarrollaGT">
+  <meta property="og:title" content="DesarrollaGT — Estudio de mercado inmobiliario en Guatemala">
+  <meta property="og:description" content="600+ proyectos georreferenciados, precio por m², absorción y cap rate por zona, y simulador financiero con TIR y VPN. Planes desde US$70 al mes.">
+  <meta property="og:url" content="https://sm2002-ai.github.io/desarrollagt/">
+  <meta property="og:image" content="https://sm2002-ai.github.io/desarrollagt/assets/og-desarrollagt.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="DesarrollaGT: inteligencia de mercado inmobiliario para Guatemala">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DesarrollaGT — Estudio de mercado inmobiliario en Guatemala">
+  <meta name="twitter:description" content="600+ proyectos, precio por m² por zona, absorción, cap rate y simulador TIR/VPN. Desde US$70/mes.">
+  <meta name="twitter:image" content="https://sm2002-ai.github.io/desarrollagt/assets/og-desarrollagt.jpg">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/fuentes/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fuentes/playfair-display-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/sitio.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://sm2002-ai.github.io/desarrollagt/#organizacion",
+        "name": "DesarrollaGT",
+        "url": "https://sm2002-ai.github.io/desarrollagt/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sm2002-ai.github.io/desarrollagt/assets/logo-512.png",
+          "width": 512,
+          "height": 512
+        },
+        "description": "Plataforma guatemalteca de inteligencia de mercado inmobiliario para desarrolladores, inversionistas y profesionales inmobiliarios.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Ciudad de Guatemala",
+          "addressCountry": "GT"
+        },
+        "areaServed": { "@type": "Country", "name": "Guatemala" },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "telephone": "+502-4220-6317",
+          "url": "https://wa.me/50242206317",
+          "availableLanguage": ["es"],
+          "areaServed": "GT"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://sm2002-ai.github.io/desarrollagt/#sitio",
+        "url": "https://sm2002-ai.github.io/desarrollagt/",
+        "name": "DesarrollaGT",
+        "inLanguage": "es-GT",
+        "publisher": { "@id": "https://sm2002-ai.github.io/desarrollagt/#organizacion" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://sm2002-ai.github.io/desarrollagt/#pagina",
+        "url": "https://sm2002-ai.github.io/desarrollagt/",
+        "name": "DesarrollaGT — Estudio de mercado inmobiliario en Guatemala",
+        "description": "Mapa de 600+ proyectos, precio por m² por zona, absorción, cap rate y simulador TIR/VPN para desarrollar e invertir en Guatemala.",
+        "inLanguage": "es-GT",
+        "isPartOf": { "@id": "https://sm2002-ai.github.io/desarrollagt/#sitio" },
+        "about": { "@id": "https://sm2002-ai.github.io/desarrollagt/#plataforma" },
+        "primaryImageOfPage": "https://sm2002-ai.github.io/desarrollagt/assets/og-desarrollagt.jpg",
+        "dateModified": "2026-11-01"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://sm2002-ai.github.io/desarrollagt/#plataforma",
+        "name": "DesarrollaGT",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "Inteligencia de mercado inmobiliario",
+        "operatingSystem": "Web (computadora y teléfono)",
+        "inLanguage": "es",
+        "url": "https://sm2002-ai.github.io/desarrollagt/",
+        "description": "Plataforma con más de 600 proyectos residenciales georreferenciados de la Ciudad de Guatemala y municipios vecinos, precio por m², cap rate, renta y absorción por zona, indicadores macroeconómicos, análisis con IA y simulador financiero con TIR, VPN y DSCR.",
+        "featureList": [
+          "Mapa de competencia con más de 600 proyectos residenciales",
+          "Análisis por zona y producto: precio mediano por m², cap rate, renta y absorción",
+          "Simulador financiero con TIR, VPN, DSCR, sensibilidad y escenarios",
+          "Análisis de mercado con IA e indicadores macro semanales",
+          "Radar de nueva competencia y modelo predictivo de precios a 6 y 12 meses",
+          "Análisis de proyecto propio, reportes PDF y datos en CSV/JSON"
+        ],
+        "areaServed": { "@type": "Country", "name": "Guatemala" },
+        "provider": { "@id": "https://sm2002-ai.github.io/desarrollagt/#organizacion" },
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Plan Starter",
+            "price": "70",
+            "priceCurrency": "USD",
+            "priceSpecification": { "@type": "UnitPriceSpecification", "price": "70", "priceCurrency": "USD", "billingDuration": "P1M", "unitText": "mes" },
+            "url": "https://sm2002-ai.github.io/desarrollagt/#planes",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Plan Pro",
+            "price": "200",
+            "priceCurrency": "USD",
+            "priceSpecification": { "@type": "UnitPriceSpecification", "price": "200", "priceCurrency": "USD", "billingDuration": "P1M", "unitText": "mes" },
+            "url": "https://sm2002-ai.github.io/desarrollagt/#planes",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Plan Enterprise",
+            "price": "500",
+            "priceCurrency": "USD",
+            "priceSpecification": { "@type": "UnitPriceSpecification", "price": "500", "priceCurrency": "USD", "billingDuration": "P1M", "unitText": "mes" },
+            "url": "https://sm2002-ai.github.io/desarrollagt/#planes",
+            "availability": "https://schema.org/InStock"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://sm2002-ai.github.io/desarrollagt/#preguntas",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué es DesarrollaGT?",
+            "acceptedAnswer": { "@type": "Answer", "text": "DesarrollaGT es una plataforma guatemalteca de inteligencia de mercado inmobiliario. Reúne más de 600 proyectos residenciales georreferenciados de la Ciudad de Guatemala y municipios vecinos, precios por m², cap rate, renta y absorción por zona, indicadores macroeconómicos y un simulador financiero con TIR, VPN y DSCR. Se usa desde el navegador, en computadora o teléfono." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Para quién es la plataforma?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Para desarrolladores que evalúan terrenos y productos, inversionistas que comparan zonas y rentabilidad, y profesionales como corredores, valuadores y analistas que necesitan respaldar precios con datos." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿De dónde provienen los datos?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Combinamos la ubicación de proyectos residenciales (Google Maps), anuncios de portales inmobiliarios de Guatemala, la Encuesta Nacional de Empleo e Ingresos del INE (2025), estadísticas del Banco de Guatemala y programas de vivienda del FHA y el CHN. Los precios son precios de oferta publicados y rangos de referencia por zona, no precios de cierre registrados." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué zonas cubre?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Las zonas 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15 y 16 de la Ciudad de Guatemala y los municipios de Mixco, Villa Nueva, San José Pinula, Santa Catarina Pinula y Fraijanes, incluida el área de Carretera a El Salvador. Seguimos ampliando la cobertura." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuánto cuesta DesarrollaGT?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Starter cuesta US$70 al mes (US$840 al año), Pro US$200 al mes (US$2,400 al año) y Enterprise US$500 al mes (US$6,000 al año). Todos incluyen el mapa de competencia, el análisis por zona y el simulador financiero; Pro agrega el radar de competencia y el modelo predictivo, y Enterprise el análisis de su propio proyecto, reportes PDF y descarga de datos." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo contrato y pago?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Escríbanos por WhatsApp al +502 4220-6317, elija su plan y pague por transferencia bancaria. Al confirmar el pago le enviamos su usuario y contraseña." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿En qué se diferencia de una consultora o de un portal inmobiliario?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Una consultora entrega un estudio a la medida en un momento dado, normalmente por más de US$10,000. Un portal muestra anuncios uno por uno. DesarrollaGT consolida la oferta de proyectos por zona, la cruza con indicadores y le permite simular su proyecto cuando lo necesite, desde US$70 al mes." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo ver la plataforma antes de pagar?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sí. Escríbanos por WhatsApp y le mostramos cómo funciona con datos de la zona que le interesa." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Sirve para proyectos de vivienda social o FHA?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sí. Cada proyecto del mapa muestra una cuota mensual estimada, y para calcular la cuota con las condiciones de Mi Primera Casa (FHA y CHN: 5% a 5.5% anual, hasta 40 años) puede usar nuestra calculadora hipotecaria gratuita." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-<nav>
-  <div class="nav-logo">DesarrollaGT <span>Inteligencia Inmobiliaria</span></div>
-  <div class="nav-links">
-    <a href="#features">Funcionalidades</a>
-    <a href="#vs">Comparación</a>
-    <a href="#pricing">Planes</a>
-    <a href="https://wa.me/50242206317?text=Hola,%20quiero%20información%20sobre%20los%20planes%20de%20DesarrollaGT" class="nav-cta" target="_blank">Contactar por WhatsApp</a>
-  </div>
-  <button class="nav-mobile" onclick="let l=document.querySelector('.nav-links');l.style.display=l.style.display==='flex'?'none':'flex'">☰</button>
-</nav>
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">Inteligencia Inmobiliaria para Guatemala</div>
-    <h1>Toma la <em>mejor decisión</em> con datos reales</h1>
-    <p>La plataforma de inteligencia de mercado inmobiliario con IA. 603+ proyectos, predicciones de precio por zona, radar de competencia y simulador financiero. Para desarrolladores, inversionistas y profesionales inmobiliarios.</p>
-    <div class="hero-buttons">
-      <a href="https://wa.me/50242206317?text=Quiero%20información%20sobre%20DesarrollaGT" class="btn-primary" target="_blank">Comenzar ahora →</a>
-      <a href="#pricing" class="btn-secondary">Ver planes y precios</a>
-      <a href="#features" class="btn-secondary">Ver funcionalidades</a>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><div class="val">603+</div><div class="lab">Proyectos</div></div>
-      <div class="hero-stat"><div class="val">19</div><div class="lab">Zonas</div></div>
-      <div class="hero-stat"><div class="val">24/7</div><div class="lab">IA Activa</div></div>
-      <div class="hero-stat"><div class="val">Semanal</div><div class="lab">Actualización IA</div></div>
-    </div>
-  </div>
-</section>
-<section id="features">
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<header class="site-header">
+  <nav class="container nav" aria-label="Principal">
+    <a class="brand" href="./" aria-label="DesarrollaGT, inicio">
+      <span class="brand-name">DesarrollaGT</span>
+      <span class="brand-tag">Inteligencia inmobiliaria</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
+    <ul class="nav-links" id="menu">
+      <li><a href="#funcionalidades">Funcionalidades</a></li>
+      <li><a href="#planes">Planes</a></li>
+      <li><a href="mercado-inmobiliario-guatemala/">Indicadores 2026</a></li>
+      <li><a href="calculadora-hipotecaria/">Calculadora hipotecaria</a></li>
+      <li><a class="btn btn-gold btn-sm" data-origen="nav" href="https://wa.me/50242206317?text=Hola%20DesarrollaGT%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20planes." target="_blank" rel="noopener">WhatsApp</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="contenido">
+
+<section class="hero" aria-labelledby="titulo-principal">
+  <svg class="hero-grid" aria-hidden="true" focusable="false" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+    <g stroke="#7FA3B6" stroke-width="1" fill="none" opacity=".55">
+      <path d="M0 120H1200M0 240H1200M0 360H1200M0 480H1200M150 0V600M330 0V600M520 0V600M700 0V600M880 0V600M1060 0V600"/>
+      <path d="M0 560L420 300L760 360L1200 60" stroke="#D4A843" stroke-width="1.5" opacity=".6"/>
+    </g>
+    <g fill="#D4A843">
+      <circle cx="880" cy="240" r="5"/><circle cx="930" cy="200" r="3.5"/><circle cx="1010" cy="300" r="4"/><circle cx="960" cy="380" r="3"/>
+      <circle cx="1060" cy="170" r="4.5"/><circle cx="820" cy="320" r="3"/><circle cx="1120" cy="260" r="3.5"/><circle cx="1000" cy="120" r="3"/>
+      <circle cx="760" cy="200" r="2.5"/><circle cx="1090" cy="400" r="2.5"/>
+    </g>
+  </svg>
   <div class="container">
-    <div class="section-label">Funcionalidades</div>
-    <h2 class="section-title">Todo lo que necesita para<br>invertir con confianza</h2>
-    <p class="section-sub">Cada plan incluye más herramientas. Aquí le explicamos qué hace cada una y en qué plan está disponible.</p>
-
-    <!-- Feature 1: Mapa -->
-    <div style="display:flex; gap:30px; align-items:center; margin-bottom:50px; flex-wrap:wrap;">
-      <div style="flex:1; min-width:280px;">
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-          <div style="width:48px; height:48px; border-radius:12px; background:rgba(21,101,192,.1); display:flex; align-items:center; justify-content:center; font-size:22px;">📍</div>
-          <div>
-            <h3 style="font-size:20px; font-weight:700; color:#0F2027; margin:0;">Mapa de Competencia</h3>
-            <span style="font-size:11px; background:#E8F5E9; color:#00A344; padding:2px 10px; border-radius:50px; font-weight:600;">Todos los planes</span>
-          </div>
-        </div>
-        <p style="font-size:14px; color:#4A5568; line-height:1.7;">Vea los 603+ proyectos residenciales de Guatemala en un mapa interactivo. Cada punto muestra nombre, zona, precio por M2, calificación de inversión y cuota mensual estimada. Filtre por zona, rango de precio, tipo de proyecto y calificación para encontrar exactamente lo que busca.</p>
+    <div class="hero-inner">
+      <p class="badge">Inteligencia inmobiliaria para Guatemala</p>
+      <h1 id="titulo-principal">Datos del mercado inmobiliario de Guatemala para <em>decidir mejor</em></h1>
+      <p class="lead">DesarrollaGT reúne en una sola plataforma más de 600 proyectos residenciales georreferenciados, precios por m², absorción y cap rate por zona, indicadores macro y un simulador financiero con TIR y VPN. Para desarrolladores, inversionistas y profesionales inmobiliarios.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-gold" data-origen="hero" href="https://wa.me/50242206317?text=Hola%20DesarrollaGT%2C%20quiero%20ver%20una%20demo%20de%20la%20plataforma." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C7 3 3 6.6 3 11c0 2.3 1.1 4.4 2.9 5.9L5 21l4.4-2.2c.8.2 1.7.3 2.6.3 5 0 9-3.6 9-8s-4-8-9-8z"/></svg>
+          Pedir una demo por WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="#planes">Ver planes y precios</a>
       </div>
-      <div style="flex:0 0 200px; text-align:center;">
-        <div style="font-size:64px;">🗺️</div>
-      </div>
-    </div>
-
-    <!-- Feature 2: Análisis -->
-    <div style="display:flex; gap:30px; align-items:center; margin-bottom:50px; flex-wrap:wrap; flex-direction:row-reverse;">
-      <div style="flex:1; min-width:280px;">
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-          <div style="width:48px; height:48px; border-radius:12px; background:rgba(0,163,68,.1); display:flex; align-items:center; justify-content:center; font-size:22px;">📊</div>
-          <div>
-            <h3 style="font-size:20px; font-weight:700; color:#0F2027; margin:0;">Análisis por Zona y Producto</h3>
-            <span style="font-size:11px; background:#E8F5E9; color:#00A344; padding:2px 10px; border-radius:50px; font-weight:600;">Todos los planes</span>
-          </div>
-        </div>
-        <p style="font-size:14px; color:#4A5568; line-height:1.7;">Compare zonas lado a lado: cuántos proyectos hay, precio mediana, porcentaje de proyectos buenos, cap rate y absorción. Vea qué tipo de producto domina en cada zona y reciba recomendaciones basadas en datos reales, no en opiniones.</p>
-      </div>
-      <div style="flex:0 0 200px; text-align:center;">
-        <div style="font-size:64px;">📊</div>
-      </div>
-    </div>
-
-    <!-- Feature 3: Simulador -->
-    <div style="display:flex; gap:30px; align-items:center; margin-bottom:50px; flex-wrap:wrap;">
-      <div style="flex:1; min-width:280px;">
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-          <div style="width:48px; height:48px; border-radius:12px; background:rgba(15,32,39,.1); display:flex; align-items:center; justify-content:center; font-size:22px;">💰</div>
-          <div>
-            <h3 style="font-size:20px; font-weight:700; color:#0F2027; margin:0;">Simulador Financiero</h3>
-            <span style="font-size:11px; background:#E8F5E9; color:#00A344; padding:2px 10px; border-radius:50px; font-weight:600;">Todos los planes</span>
-          </div>
-        </div>
-        <p style="font-size:14px; color:#4A5568; line-height:1.7;">Arme su pro-forma completa: terreno, construcción, costos blandos, financiamiento bancario. Vea la TIR, VPN, DSCR, análisis de sensibilidad con gráfico tornado, y escenarios pesimista/base/optimista. Compare su proyecto en diferentes zonas automáticamente.</p>
-      </div>
-      <div style="flex:0 0 200px; text-align:center;">
-        <div style="font-size:64px;">💰</div>
-      </div>
-    </div>
-
-    <!-- Feature 4: Inteligencia IA -->
-    <div style="display:flex; gap:30px; align-items:center; margin-bottom:50px; flex-wrap:wrap; flex-direction:row-reverse;">
-      <div style="flex:1; min-width:280px;">
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-          <div style="width:48px; height:48px; border-radius:12px; background:rgba(212,168,67,.1); display:flex; align-items:center; justify-content:center; font-size:22px;">🧠</div>
-          <div>
-            <h3 style="font-size:20px; font-weight:700; color:#0F2027; margin:0;">Inteligencia con IA</h3>
-            <div style="margin-top:4px;">
-              <span style="font-size:11px; background:#FFF3E0; color:#E65100; padding:2px 10px; border-radius:50px; font-weight:600;">Starter: 4/mes</span>
-              <span style="font-size:11px; background:#E3F2FD; color:#1565C0; padding:2px 10px; border-radius:50px; font-weight:600;">Pro: ilimitado</span>
-            </div>
-          </div>
-        </div>
-        <p style="font-size:14px; color:#4A5568; line-height:1.7;">La IA busca noticias del mercado inmobiliario, detecta alertas de riesgo u oportunidad, analiza tendencias macroeconómicas y genera recomendaciones personalizadas. Cada semana acumula más conocimiento y sus análisis son más relevantes. Incluye datos de PIB, inflación, tasas, remesas y FAPRIVI actualizados.</p>
-      </div>
-      <div style="flex:0 0 200px; text-align:center;">
-        <div style="font-size:64px;">🧠</div>
-      </div>
-    </div>
-
-    <!-- Feature 5: Radar -->
-    <div style="display:flex; gap:30px; align-items:center; margin-bottom:50px; flex-wrap:wrap;">
-      <div style="flex:1; min-width:280px;">
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-          <div style="width:48px; height:48px; border-radius:12px; background:rgba(198,40,40,.1); display:flex; align-items:center; justify-content:center; font-size:22px;">🔴</div>
-          <div>
-            <h3 style="font-size:20px; font-weight:700; color:#0F2027; margin:0;">Radar de Competencia + Modelo Predictivo</h3>
-            <span style="font-size:11px; background:#E3F2FD; color:#1565C0; padding:2px 10px; border-radius:50px; font-weight:600;">Plan Pro y Enterprise</span>
-          </div>
-        </div>
-        <p style="font-size:14px; color:#4A5568; line-height:1.7;">La IA busca automáticamente proyectos nuevos en preventa o construcción que no están en la base de datos y los agrega. Además, proyecta precios a 6 y 12 meses por zona usando inflación, remesas y PIB. Incluye ranking de zonas por atractivo de inversión e índice de saturación del mercado.</p>
-      </div>
-      <div style="flex:0 0 200px; text-align:center;">
-        <div style="font-size:64px;">📡</div>
-      </div>
-    </div>
-
-    <!-- Feature 6: Enterprise -->
-    <div style="display:flex; gap:30px; align-items:center; margin-bottom:30px; flex-wrap:wrap; flex-direction:row-reverse;">
-      <div style="flex:1; min-width:280px;">
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-          <div style="width:48px; height:48px; border-radius:12px; background:rgba(212,168,67,.15); display:flex; align-items:center; justify-content:center; font-size:22px;">👔</div>
-          <div>
-            <h3 style="font-size:20px; font-weight:700; color:#0F2027; margin:0;">Mi Proyecto + Reportes + API</h3>
-            <span style="font-size:11px; background:linear-gradient(135deg,#D4A843,#C9982E); color:#0F2027; padding:2px 10px; border-radius:50px; font-weight:700;">Solo Enterprise</span>
-          </div>
-        </div>
-        <p style="font-size:14px; color:#4A5568; line-height:1.7;">Configure su proyecto específico (zona, tipo, unidades, precio) y la IA le da un análisis personalizado: posicionamiento vs competencia, absorción estimada, fortalezas, riesgos y recomendaciones. Descargue reportes PDF mensuales y acceda a toda la data en CSV y JSON para sus propios análisis.</p>
-      </div>
-      <div style="flex:0 0 200px; text-align:center;">
-        <div style="font-size:64px;">👔</div>
+      <p class="hero-note">Activación por WhatsApp y pago por transferencia bancaria. Planes desde US$70 al mes.</p>
+      <div class="stats">
+        <div class="stat"><b>600+</b><span>proyectos residenciales georreferenciados</span></div>
+        <div class="stat"><b>19</b><span>zonas y municipios del área metropolitana</span></div>
+        <div class="stat"><b>TIR · VPN</b><span>y DSCR en el simulador financiero</span></div>
+        <div class="stat"><b>Semanal</b><span>actualización de indicadores macro</span></div>
       </div>
     </div>
   </div>
 </section>
-<section id="vs">
+
+<section class="pulse" aria-labelledby="titulo-pulso">
   <div class="container">
-    <div class="section-label">¿Por qué DesarrollaGT?</div>
-    <h2 class="section-title">Comparación honesta vs alternativas</h2>
-    <p class="section-sub">Lo que las consultoras cobran en miles de dólares por estudio, usted lo tiene actualizado cada semana.</p>
-    <table class="comparison-table">
-      <thead><tr><th>Característica</th><th>Consultoras</th><th>Portales</th><th>ChatGPT</th><th class="highlight-col" style="color:#fff;background:var(--gold);">DesarrollaGT</th></tr></thead>
-      <tbody>
-        <tr><td>Acceso desde teléfono</td><td class="cross">✕</td><td class="check">✓</td><td class="check">✓</td><td class="highlight-col check">✓</td></tr>
-        <tr><td>Actualización automática</td><td>Trimestral</td><td>Manual</td><td>Por consulta</td><td class="highlight-col"><b style="color:var(--green)">Semanal</b></td></tr>
-        <tr><td>IA integrada</td><td class="cross">✕</td><td class="cross">✕</td><td class="check">✓</td><td class="highlight-col check">✓</td></tr>
-        <tr><td>603+ proyectos reales</td><td class="check">✓</td><td class="cross">✕</td><td class="cross">✕</td><td class="highlight-col check">✓</td></tr>
-        <tr><td>Modelo predictivo</td><td class="cross">✕</td><td class="cross">✕</td><td class="cross">✕</td><td class="highlight-col check">✓</td></tr>
-        <tr><td>Radar de competencia</td><td class="cross">✕</td><td class="cross">✕</td><td class="cross">✕</td><td class="highlight-col check">✓</td></tr>
-        <tr><td>Simulador financiero</td><td class="cross">✕</td><td class="cross">✕</td><td class="cross">✕</td><td class="highlight-col check">✓</td></tr>
-        <tr><td>Self-service</td><td class="cross">✕</td><td class="check">✓</td><td class="check">✓</td><td class="highlight-col check">✓</td></tr>
-        <tr><td>Costo anual</td><td><b>$10,000+</b></td><td>Gratis</td><td>~$240</td><td class="highlight-col"><b style="color:var(--green)">Desde $840</b></td></tr>
-      </tbody>
-    </table>
+    <div class="pulse-head">
+      <h2 id="titulo-pulso">Pulso del mercado · noviembre 2026</h2>
+      <a href="mercado-inmobiliario-guatemala/">Ver indicadores y análisis →</a>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="k-label">Tasa líder de política monetaria</div><div class="k-val">3.50%</div><div class="k-src">Banguat · decisión del 23 sep 2026</div></div>
+      <div class="kpi"><div class="k-label">Inflación interanual</div><div class="k-val">4.69%</div><div class="k-src">INE · septiembre 2026</div></div>
+      <div class="kpi"><div class="k-label">Remesas enero–septiembre</div><div class="k-val">US$20,016 M</div><div class="k-src">+5.5% interanual · Banguat</div></div>
+      <div class="kpi"><div class="k-label">Crecimiento del PIB 2026</div><div class="k-val">4.3%</div><div class="k-src">Estimación del Banguat · sep 2026</div></div>
+    </div>
   </div>
 </section>
-<div class="social-proof">
-  <p class="proof-text">"En el mercado inmobiliario guatemalteco, quien tiene mejor información toma mejores decisiones. DesarrollaGT pone esa información al alcance de todos."</p>
-  <p class="proof-author">— Nuestra misión</p>
-</div>
-<section id="pricing">
+
+<section id="para-quien" aria-labelledby="titulo-para-quien">
   <div class="container">
-    <div class="section-label">Planes</div>
-    <h2 class="section-title">Inversión que se paga sola<br>con una mejor decisión</h2>
-    <p class="section-sub">Escríbanos por WhatsApp para activar su plan.</p>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <div class="price-name">Starter</div>
-        <div class="price-amount">$70<span>/mes</span></div>
-        <div class="price-period">~Q540/mes · $840/año</div>
-        <ul class="price-features">
-          <li>Mapa de 603+ proyectos</li>
-          <li>Filtros por zona, precio, tipo</li>
+    <p class="eyebrow">Para quién es</p>
+    <h2 class="section-title" id="titulo-para-quien">Hecho para quienes desarrollan, invierten y asesoran</h2>
+    <p class="section-sub">Una misma base de datos, tres formas de usarla.</p>
+    <div class="grid-3">
+      <article class="card">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5l8-3v19M12 8l8 3v10M8 9h1M8 13h1M8 17h1M16 13h1M16 17h1M2 21h20"/></svg></div>
+        <h3>Desarrolladores</h3>
+        <p>Elija zona y producto con evidencia: vea qué proyectos compiten, a qué precio por m² ofertan y cuánto absorbe el mercado antes de comprar terreno o lanzar la preventa.</p>
+      </article>
+      <article class="card">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 14.5l3-3 2 2 4-4.5"/><path d="M13.5 9h3v3"/></svg></div>
+        <h3>Inversionistas</h3>
+        <p>Compare cap rate, renta estimada y precio por m² entre zonas, y simule el retorno de comprar en preventa o en reventa antes de comprometer capital.</p>
+      </article>
+      <article class="card">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 5a3 3 0 0 1 0 6M21 20c0-2.6-1.7-4.8-4-5.6"/></svg></div>
+        <h3>Corredores, valuadores y analistas</h3>
+        <p>Respalde cada precio con datos por zona y prepare análisis para sus clientes con el simulador financiero y sus reportes en PDF.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="funcionalidades" class="section-soft" aria-labelledby="titulo-funcionalidades">
+  <div class="container">
+    <p class="eyebrow">Funcionalidades</p>
+    <h2 class="section-title" id="titulo-funcionalidades">Todo lo que necesita para evaluar un proyecto</h2>
+    <p class="section-sub">Cada herramienta indica en qué plan está disponible.</p>
+    <div class="grid-3">
+      <article class="card">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div>
+        <div class="tags"><span class="tag">Todos los planes</span></div>
+        <h3>Mapa de competencia</h3>
+        <p>Más de 600 proyectos residenciales en un mapa interactivo con precio por m², cuota mensual estimada y calificación de inversión. Filtre por zona, precio y tipo de proyecto.</p>
+      </article>
+      <article class="card">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V11M10 20V5M16 20v-6M21 20H3"/></svg></div>
+        <div class="tags"><span class="tag">Todos los planes</span></div>
+        <h3>Análisis por zona y producto</h3>
+        <p>Compare zonas lado a lado: número de proyectos, precio mediano por m², cap rate, renta, absorción en unidades por mes y el tipo de producto que domina en cada zona.</p>
+      </article>
+      <article class="card">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><circle cx="8.5" cy="11.5" r=".6"/><circle cx="12" cy="11.5" r=".6"/><circle cx="15.5" cy="11.5" r=".6"/><circle cx="8.5" cy="15" r=".6"/><circle cx="12" cy="15" r=".6"/><circle cx="15.5" cy="15" r=".6"/><path d="M8.5 18.2h7"/></svg></div>
+        <div class="tags"><span class="tag">Todos los planes</span></div>
+        <h3>Simulador financiero</h3>
+        <p>Pro-forma con terreno, construcción, costos blandos y financiamiento. TIR, VPN, DSCR, sensibilidad tipo tornado y escenarios pesimista, base y optimista, con reporte en PDF.</p>
+      </article>
+      <article class="card">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7-4.7-1.8 4.7-1.8z"/><path d="M18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg></div>
+        <div class="tags"><span class="tag lim">Starter: 4 al mes</span><span class="tag pro">Pro y Enterprise: ilimitado</span></div>
+        <h3>Inteligencia de mercado con IA</h3>
+        <p>Noticias del sector, alertas de riesgo y oportunidad, e indicadores macro actualizados cada semana (PIB, inflación, tasas, remesas y FAPRIVI) interpretados para su zona.</p>
+      </article>
+      <article class="card">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 12l5.5-5.5"/><circle cx="12" cy="12" r="1"/></svg></div>
+        <div class="tags"><span class="tag pro">Pro: 8 búsquedas al mes</span><span class="tag ent">Enterprise: ilimitado</span></div>
+        <h3>Radar de competencia y modelo predictivo</h3>
+        <p>Detecta proyectos nuevos en preventa o construcción, proyecta precios a 6 y 12 meses por zona y ordena las zonas por atractivo de inversión e índice de saturación.</p>
+      </article>
+      <article class="card">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></div>
+        <div class="tags"><span class="tag ent">Solo Enterprise</span></div>
+        <h3>Mi Proyecto, reportes y datos</h3>
+        <p>Configure su proyecto y reciba un análisis personalizado frente a su competencia directa, reportes PDF mensuales y descarga de datos en CSV y JSON.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona" class="section-dark" aria-labelledby="titulo-como">
+  <div class="container">
+    <p class="eyebrow">Cómo empezar</p>
+    <h2 class="section-title" id="titulo-como">Activo en tres pasos, sin formularios</h2>
+    <p class="section-sub">Todo el proceso es por WhatsApp.</p>
+    <ol class="steps">
+      <li><h3>Escríbanos por WhatsApp</h3><p>Cuéntenos qué está evaluando y le mostramos la plataforma con datos de la zona que le interesa.</p></li>
+      <li><h3>Elija su plan y pague por transferencia</h3><p>Starter, Pro o Enterprise, mensual o anual. Le enviamos los datos bancarios por el mismo chat.</p></li>
+      <li><h3>Reciba su acceso</h3><p>Le enviamos su usuario y contraseña. Entra desde la computadora o el teléfono, sin instalar nada.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="comparacion" aria-labelledby="titulo-comparacion">
+  <div class="container">
+    <p class="eyebrow">¿Por qué DesarrollaGT?</p>
+    <h2 class="section-title" id="titulo-comparacion">Comparación honesta con las alternativas</h2>
+    <p class="section-sub">Lo que una consultora entrega en un estudio puntual, usted lo consulta cuando lo necesita y con datos que se actualizan.</p>
+    <p class="scroll-hint" aria-hidden="true">Deslice la tabla hacia los lados para ver todas las columnas →</p>
+    <div class="table-wrap">
+      <table class="tabla-ancha" aria-describedby="nota-comparacion">
+        <thead>
+          <tr><th scope="col" class="left">Característica</th><th scope="col" class="col-dgt">DesarrollaGT</th><th scope="col">Consultoras</th><th scope="col">Portales inmobiliarios</th><th scope="col">ChatGPT u otra IA general</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Acceso desde el teléfono</th><td class="si col-dgt">Sí</td><td class="no">No</td><td class="si">Sí</td><td class="si">Sí</td></tr>
+          <tr><th scope="row">Actualización</th><td class="si col-dgt">Semanal</td><td>Trimestral</td><td>Manual</td><td>Por consulta</td></tr>
+          <tr><th scope="row">Base de 600+ proyectos georreferenciados</th><td class="si col-dgt">Sí</td><td class="si">Sí</td><td class="no">No</td><td class="no">No</td></tr>
+          <tr><th scope="row">IA integrada</th><td class="si col-dgt">Sí</td><td class="no">No</td><td class="no">No</td><td class="si">Sí</td></tr>
+          <tr><th scope="row">Modelo predictivo de precios</th><td class="si col-dgt">Sí</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+          <tr><th scope="row">Radar de nueva competencia</th><td class="si col-dgt">Sí</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+          <tr><th scope="row">Simulador financiero (TIR, VPN, DSCR)</th><td class="si col-dgt">Sí</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+          <tr><th scope="row">Autoservicio</th><td class="si col-dgt">Sí</td><td class="no">No</td><td class="si">Sí</td><td class="si">Sí</td></tr>
+          <tr><th scope="row">Costo anual</th><td class="si col-dgt num">Desde US$840</td><td class="num"><b>US$10,000+</b></td><td>Gratis</td><td class="num">~US$240</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" id="nota-comparacion">Comparación de referencia elaborada por DesarrollaGT. Costo de ChatGPT estimado con una suscripción individual de US$20 al mes.</p>
+  </div>
+</section>
+
+<section class="section-dark" aria-label="Misión">
+  <div class="container">
+    <p class="quote">“En el mercado inmobiliario guatemalteco, quien tiene mejor información toma mejores decisiones. DesarrollaGT pone esa información al alcance de todos.”</p>
+    <p class="quote-by">— Nuestra misión</p>
+  </div>
+</section>
+
+<section id="planes" class="section-soft" aria-labelledby="titulo-planes">
+  <div class="container">
+    <p class="eyebrow">Planes</p>
+    <h2 class="section-title" id="titulo-planes">Una mejor decisión paga la suscripción</h2>
+    <p class="section-sub">Precios en dólares. Activación por WhatsApp y pago por transferencia bancaria.</p>
+    <div class="plans">
+      <article class="plan">
+        <h3>Starter</h3>
+        <div class="price">US$70<small> /mes</small></div>
+        <p class="price-alt">~Q540 al mes · US$840 al año</p>
+        <p class="for">Para explorar el mercado y evaluar proyectos.</p>
+        <ul class="checks">
+          <li>Mapa de 600+ proyectos y filtros</li>
           <li>Análisis por zona y producto</li>
-          <li>Cap rates y absorción</li>
-          <li>Simulador financiero completo</li>
-          <li>Datos macro semanales</li>
-          <li>4 análisis IA / mes</li>
-          <li>2 búsquedas radar / mes</li>
-          <li class="disabled">Modelo predictivo</li>
-          <li class="disabled">Análisis personalizado</li>
+          <li>Cap rate, renta y absorción por zona</li>
+          <li>Simulador financiero completo (TIR, VPN, DSCR)</li>
+          <li>Indicadores macro semanales</li>
+          <li>4 análisis con IA al mes</li>
         </ul>
-        <a href="https://wa.me/50242206317?text=Quiero%20el%20plan%20Starter%20($70/mes)%20de%20DesarrollaGT" class="price-btn price-btn-outline" target="_blank">Empezar Starter</a>
-      </div>
-      <div class="price-card featured">
-        <div class="price-name">Pro</div>
-        <div class="price-amount">$200<span>/mes</span></div>
-        <div class="price-period">~Q1,550/mes · $2,400/año</div>
-        <ul class="price-features">
-          <li>Todo lo del Starter</li>
-          <li>Modelo predictivo de precios</li>
-          <li>Radar de nueva competencia</li>
-          <li>TIR, VPN, DSCR, Sensibilidad</li>
-          <li>Inteligencia IA ilimitada</li>
-          <li>8 búsquedas radar / mes</li>
-          <li>Ranking de zonas por atractivo</li>
+        <a class="btn btn-outline" data-origen="plan-starter" href="https://wa.me/50242206317?text=Hola%2C%20me%20interesa%20el%20plan%20Starter%20%28US%2470%2Fmes%29%20de%20DesarrollaGT." target="_blank" rel="noopener">Empezar con Starter</a>
+      </article>
+      <article class="plan featured">
+        <span class="ribbon">MÁS POPULAR</span>
+        <h3>Pro</h3>
+        <div class="price">US$200<small> /mes</small></div>
+        <p class="price-alt">~Q1,550 al mes · US$2,400 al año</p>
+        <p class="for">Para equipos que lanzan o comercializan proyectos.</p>
+        <ul class="checks">
+          <li>Todo lo de Starter</li>
+          <li>Análisis con IA ilimitado</li>
+          <li>Radar de nueva competencia (8 búsquedas al mes)</li>
+          <li>Modelo predictivo de precios a 6 y 12 meses</li>
+          <li>Ranking de zonas e índice de saturación</li>
           <li>Optimizador de producto</li>
-          <li class="disabled">Análisis personalizado IA</li>
-          <li class="disabled">Reportes PDF y API datos</li>
         </ul>
-        <a href="https://wa.me/50242206317?text=Quiero%20el%20plan%20Pro%20($200/mes)%20de%20DesarrollaGT" class="price-btn price-btn-primary" target="_blank">Empezar Pro →</a>
-      </div>
-      <div class="price-card">
-        <div class="price-name">Enterprise</div>
-        <div class="price-amount">$500<span>/mes</span></div>
-        <div class="price-period">~Q3,875/mes · $6,000/año</div>
-        <ul class="price-features">
-          <li>Todo lo del Pro</li>
-          <li>Análisis IA de mi proyecto</li>
-          <li>Mi zona vs competencia directa</li>
-          <li>Inteligencia y radar ilimitados</li>
+        <a class="btn btn-gold" data-origen="plan-pro" href="https://wa.me/50242206317?text=Hola%2C%20me%20interesa%20el%20plan%20Pro%20%28US%24200%2Fmes%29%20de%20DesarrollaGT." target="_blank" rel="noopener">Empezar con Pro</a>
+      </article>
+      <article class="plan">
+        <h3>Enterprise</h3>
+        <div class="price">US$500<small> /mes</small></div>
+        <p class="price-alt">~Q3,875 al mes · US$6,000 al año</p>
+        <p class="for">Para desarrolladoras y equipos de inversión.</p>
+        <ul class="checks">
+          <li>Todo lo de Pro</li>
+          <li>Análisis con IA de su proyecto vs. su competencia directa</li>
+          <li>Radar e inteligencia ilimitados</li>
           <li>Reportes PDF mensuales</li>
-          <li>API de datos (CSV, JSON)</li>
-          <li>Base de conocimiento IA</li>
-          <li>Soporte prioritario WhatsApp</li>
-          <li>Onboarding personalizado</li>
-          <li>Capacitación incluida</li>
+          <li>Datos en CSV y JSON (API)</li>
+          <li>Soporte prioritario, onboarding y capacitación</li>
         </ul>
-        <a href="https://wa.me/50242206317?text=Quiero%20el%20plan%20Enterprise%20($500/mes)%20de%20DesarrollaGT" class="price-btn price-btn-outline" target="_blank">Contactar Ventas</a>
+        <a class="btn btn-outline" data-origen="plan-enterprise" href="https://wa.me/50242206317?text=Hola%2C%20me%20interesa%20el%20plan%20Enterprise%20%28US%24500%2Fmes%29%20de%20DesarrollaGT." target="_blank" rel="noopener">Hablar con ventas</a>
+      </article>
+    </div>
+    <p class="plans-note">¿No sabe qué plan elegir? <a data-origen="recomendar-plan" href="https://wa.me/50242206317?text=Hola%20DesarrollaGT%2C%20%C2%BFqu%C3%A9%20plan%20me%20recomiendan%20para%20mi%20proyecto%3F" target="_blank" rel="noopener">Escríbanos</a> y le recomendamos uno según su proyecto.</p>
+
+    <details class="matrix">
+      <summary>Ver la comparación completa de planes</summary>
+      <div class="table-wrap">
+        <table class="tabla-planes" aria-label="Disponibilidad de cada función por plan">
+          <thead><tr><th scope="col" class="left">Función</th><th scope="col">Starter</th><th scope="col">Pro</th><th scope="col">Enterprise</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Mapa de 600+ proyectos y filtros</th><td class="si">Sí</td><td class="si">Sí</td><td class="si">Sí</td></tr>
+            <tr><th scope="row">Análisis por zona y producto</th><td class="si">Sí</td><td class="si">Sí</td><td class="si">Sí</td></tr>
+            <tr><th scope="row">Cap rate, renta y absorción por zona</th><td class="si">Sí</td><td class="si">Sí</td><td class="si">Sí</td></tr>
+            <tr><th scope="row">Simulador financiero (TIR, VPN, DSCR, sensibilidad, escenarios)</th><td class="si">Sí</td><td class="si">Sí</td><td class="si">Sí</td></tr>
+            <tr><th scope="row">Indicadores macro semanales</th><td class="si">Sí</td><td class="si">Sí</td><td class="si">Sí</td></tr>
+            <tr><th scope="row">Análisis de mercado con IA</th><td>4 al mes</td><td>Ilimitado</td><td>Ilimitado</td></tr>
+            <tr><th scope="row">Radar de nueva competencia</th><td class="no">—</td><td>8 búsquedas al mes</td><td>Ilimitado</td></tr>
+            <tr><th scope="row">Modelo predictivo de precios (6 y 12 meses)</th><td class="no">—</td><td class="si">Sí</td><td class="si">Sí</td></tr>
+            <tr><th scope="row">Ranking de zonas e índice de saturación</th><td class="no">—</td><td class="si">Sí</td><td class="si">Sí</td></tr>
+            <tr><th scope="row">Optimizador de producto</th><td class="no">—</td><td class="si">Sí</td><td class="si">Sí</td></tr>
+            <tr><th scope="row">Análisis con IA de su proyecto y su competencia directa</th><td class="no">—</td><td class="no">—</td><td class="si">Sí</td></tr>
+            <tr><th scope="row">Reportes PDF mensuales</th><td class="no">—</td><td class="no">—</td><td class="si">Sí</td></tr>
+            <tr><th scope="row">Descarga de datos CSV y JSON (API)</th><td class="no">—</td><td class="no">—</td><td class="si">Sí</td></tr>
+            <tr><th scope="row">Base de conocimiento IA</th><td class="no">—</td><td class="no">—</td><td class="si">Sí</td></tr>
+            <tr><th scope="row">Soporte</th><td>WhatsApp</td><td>WhatsApp</td><td>Prioritario, onboarding y capacitación</td></tr>
+          </tbody>
+        </table>
       </div>
+    </details>
+  </div>
+</section>
+
+<section id="preguntas" aria-labelledby="titulo-preguntas">
+  <div class="container">
+    <p class="eyebrow">Preguntas frecuentes</p>
+    <h2 class="section-title" id="titulo-preguntas">Lo que nos preguntan antes de empezar</h2>
+    <div class="faq">
+      <details open>
+        <summary>¿Qué es DesarrollaGT?</summary>
+        <div><p>DesarrollaGT es una plataforma guatemalteca de inteligencia de mercado inmobiliario. Reúne más de 600 proyectos residenciales georreferenciados de la Ciudad de Guatemala y municipios vecinos, precios por m², cap rate, renta y absorción por zona, indicadores macroeconómicos y un simulador financiero con TIR, VPN y DSCR. Se usa desde el navegador, en computadora o teléfono.</p></div>
+      </details>
+      <details>
+        <summary>¿Para quién es la plataforma?</summary>
+        <div><p>Para desarrolladores que evalúan terrenos y productos, inversionistas que comparan zonas y rentabilidad, y profesionales como corredores, valuadores y analistas que necesitan respaldar precios con datos.</p></div>
+      </details>
+      <details>
+        <summary>¿De dónde provienen los datos?</summary>
+        <div><p>Combinamos la ubicación de proyectos residenciales (Google Maps), anuncios de portales inmobiliarios de Guatemala, la Encuesta Nacional de Empleo e Ingresos del INE (2025), estadísticas del Banco de Guatemala y programas de vivienda del FHA y el CHN. Los precios son precios de oferta publicados y rangos de referencia por zona, no precios de cierre registrados.</p></div>
+      </details>
+      <details>
+        <summary>¿Qué zonas cubre?</summary>
+        <div><p>Las zonas 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15 y 16 de la Ciudad de Guatemala y los municipios de Mixco, Villa Nueva, San José Pinula, Santa Catarina Pinula y Fraijanes, incluida el área de Carretera a El Salvador. Seguimos ampliando la cobertura.</p></div>
+      </details>
+      <details>
+        <summary>¿Cuánto cuesta DesarrollaGT?</summary>
+        <div><p>Starter cuesta US$70 al mes (US$840 al año), Pro US$200 al mes (US$2,400 al año) y Enterprise US$500 al mes (US$6,000 al año). Todos incluyen el mapa de competencia, el análisis por zona y el simulador financiero; Pro agrega el radar de competencia y el modelo predictivo, y Enterprise el análisis de su propio proyecto, reportes PDF y descarga de datos.</p></div>
+      </details>
+      <details>
+        <summary>¿Cómo contrato y pago?</summary>
+        <div><p>Escríbanos por WhatsApp al +502 4220-6317, elija su plan y pague por transferencia bancaria. Al confirmar el pago le enviamos su usuario y contraseña.</p></div>
+      </details>
+      <details>
+        <summary>¿En qué se diferencia de una consultora o de un portal inmobiliario?</summary>
+        <div><p>Una consultora entrega un estudio a la medida en un momento dado, normalmente por más de US$10,000. Un portal muestra anuncios uno por uno. DesarrollaGT consolida la oferta de proyectos por zona, la cruza con indicadores y le permite simular su proyecto cuando lo necesite, desde US$70 al mes.</p></div>
+      </details>
+      <details>
+        <summary>¿Puedo ver la plataforma antes de pagar?</summary>
+        <div><p>Sí. Escríbanos por WhatsApp y le mostramos cómo funciona con datos de la zona que le interesa.</p></div>
+      </details>
+      <details>
+        <summary>¿Sirve para proyectos de vivienda social o FHA?</summary>
+        <div><p>Sí. Cada proyecto del mapa muestra una cuota mensual estimada, y para calcular la cuota con las condiciones de Mi Primera Casa (FHA y CHN: 5% a 5.5% anual, hasta 40 años) puede usar nuestra <a href="calculadora-hipotecaria/">calculadora hipotecaria gratuita</a>.</p></div>
+      </details>
     </div>
   </div>
 </section>
-<section class="cta">
-  <h2>¿Listo para tomar decisiones<br>con inteligencia de mercado?</h2>
-  <p>Escríbanos por WhatsApp y active su plan hoy.</p>
-  <a href="https://wa.me/50242206317?text=Quiero%20activar%20mi%20plan%20de%20DesarrollaGT" class="btn-primary" target="_blank">Escribir por WhatsApp →</a>
-</section>
-<footer>
-  <p style="margin-bottom:8px;"><strong style="color:var(--gold);font-family:'Playfair Display',serif;font-size:16px;">DesarrollaGT</strong></p>
-  <p>Inteligencia Inmobiliaria para Guatemala</p>
-  <p style="margin-top:12px;">© 2026 DesarrollaGT. Todos los derechos reservados.</p>
-  <p style="margin-top:8px;"><a href="https://wa.me/50242206317" style="color:var(--gold);">WhatsApp: +502 4220-6317</a></p>
-</footer>
-<a href="https:
 
-  
+<section class="cta" aria-labelledby="titulo-cta">
+  <div class="container">
+    <h2 id="titulo-cta">¿Listo para decidir con datos del mercado?</h2>
+    <p>Escríbanos por WhatsApp. Le mostramos la plataforma y activamos su plan.</p>
+    <a class="btn btn-gold" data-origen="cta-final" href="https://wa.me/50242206317?text=Hola%20DesarrollaGT%2C%20quiero%20activar%20mi%20plan." target="_blank" rel="noopener">Escribir por WhatsApp →</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <p class="foot-brand">DesarrollaGT</p>
+        <p>Inteligencia de mercado inmobiliario para Guatemala: proyectos, precios por m², rentabilidad por zona y simulación financiera en una sola plataforma.</p>
+        <p><a data-origen="footer" href="https://wa.me/50242206317?text=Hola%20DesarrollaGT%2C%20tengo%20una%20consulta." target="_blank" rel="noopener">WhatsApp: +502 4220-6317</a></p>
+      </div>
+      <div>
+        <h2>Producto</h2>
+        <ul>
+          <li><a href="#funcionalidades">Funcionalidades</a></li>
+          <li><a href="#planes">Planes y precios</a></li>
+          <li><a href="#comparacion">Comparación</a></li>
+          <li><a href="#preguntas">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Recursos gratuitos</h2>
+        <ul>
+          <li><a href="calculadora-hipotecaria/">Calculadora hipotecaria Guatemala</a></li>
+          <li><a href="mercado-inmobiliario-guatemala/">Indicadores del mercado inmobiliario 2026</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 DesarrollaGT · Ciudad de Guatemala. Todos los derechos reservados.</span>
+      <span>Información actualizada el 1 de noviembre de 2026.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" data-origen="flotante" href="https://wa.me/50242206317?text=Hola%20DesarrollaGT%2C%20tengo%20una%20consulta." target="_blank" rel="noopener" aria-label="Escribir a DesarrollaGT por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C7 3 3 6.6 3 11c0 2.3 1.1 4.4 2.9 5.9L5 21l4.4-2.2c.8.2 1.7.3 2.6.3 5 0 9-3.6 9-8s-4-8-9-8z"/></svg>
+</a>
+
+<script src="assets/sitio.js" defer></script>
+</body>
+</html>
