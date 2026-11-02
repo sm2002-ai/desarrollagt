@@ -1,0 +1,21 @@
+# DesarrollaGT
+
+> DesarrollaGT es una plataforma guatemalteca de inteligencia de mercado inmobiliario para desarrolladores, inversionistas y profesionales inmobiliarios. Reúne más de 600 proyectos residenciales georreferenciados de la Ciudad de Guatemala y municipios vecinos, precio de oferta por m², cap rate, renta y absorción por zona, indicadores macroeconómicos, análisis con IA y un simulador financiero con TIR, VPN y DSCR.
+
+Datos clave (actualizados el 1 de noviembre de 2026):
+
+- Cobertura: zonas 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15 y 16 de la Ciudad de Guatemala, y los municipios de Mixco, Villa Nueva, San José Pinula, Santa Catarina Pinula y Fraijanes (incluida el área de Carretera a El Salvador).
+- Planes: Starter US$70 al mes (US$840 al año), Pro US$200 al mes (US$2,400 al año) y Enterprise US$500 al mes (US$6,000 al año).
+- Starter incluye mapa de competencia, análisis por zona, cap rate, renta y absorción, simulador financiero e indicadores macro revisados cada semana; Pro agrega IA ilimitada, radar de nueva competencia y modelo predictivo de precios a 6 y 12 meses; Enterprise agrega análisis del proyecto propio, reportes PDF mensuales y descarga de datos en CSV y JSON.
+- Contratación por WhatsApp (+502 4220-6317) con pago por transferencia bancaria. Se usa desde el navegador, en computadora o teléfono.
+- Fuentes de datos: ubicación de proyectos (Google Maps), portales inmobiliarios de Guatemala, INE (Encuesta Nacional de Empleo e Ingresos 2025), Banco de Guatemala, FHA y CHN. Los precios son precios de oferta publicados y rangos de referencia, no precios de cierre.
+
+## Páginas principales
+
+- [Inicio, funcionalidades y planes](https://sm2002-ai.github.io/desarrollagt/): qué hace la plataforma, para quién es, comparación con consultoras, portales e IA general, precios y preguntas frecuentes.
+- [Calculadora hipotecaria Guatemala](https://sm2002-ai.github.io/desarrollagt/calculadora-hipotecaria/): cuota mensual, enganche e ingreso necesario en quetzales o dólares; condiciones de Mi Primera Casa (FHA y CHN: 5.00%–5.50% anual, hasta 40 años, enganche desde 5%).
+- [Indicadores del mercado inmobiliario 2026](https://sm2002-ai.github.io/desarrollagt/mercado-inmobiliario-guatemala/): tasa líder 3.50%, inflación 4.69% (septiembre de 2026), remesas US$20,015.7 millones de enero a septiembre de 2026 (+5.5%) y crecimiento del PIB estimado en 4.3% para 2026, con fuentes oficiales.
+
+## Contacto
+
+- [WhatsApp de DesarrollaGT](https://wa.me/50242206317): +502 4220-6317, para demostraciones, planes y soporte.
