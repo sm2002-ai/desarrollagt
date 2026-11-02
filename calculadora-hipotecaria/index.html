@@ -147,7 +147,7 @@
 <section aria-labelledby="titulo-calc" style="padding-top:44px">
   <div class="container">
     <div class="answer">
-      <p><strong>Ejemplo rápido:</strong> una vivienda de <strong>Q1,000,000</strong> con 20% de enganche, a 9% anual y 25 años, tiene una cuota de <strong>Q6,714 al mes</strong> (capital e intereses). Con Mi Primera Casa, una vivienda de <strong>Q350,000</strong> con 5% de enganche, a 5% anual y 40 años, paga <strong>Q1,603 al mes</strong>.</p>
+      <p><strong>Ejemplo rápido:</strong> una vivienda de <strong>Q1,000,000</strong> con 20% de enganche, a 9% anual y 25 años, tiene una cuota de <strong>Q6,714 al mes</strong> (capital e intereses). Con Mi Primera Casa, una vivienda de <strong>Q350,000</strong> con 5% de enganche, a 5% anual y 40 años, la cuota es de <strong>Q1,603 al mes</strong>.</p>
     </div>
 
     <h2 class="sr-only" id="titulo-calc">Calcule su cuota</h2>
@@ -200,7 +200,7 @@
             </div>
           </div>
         </details>
-        <button type="submit" class="sr-only">Calcular cuota</button>
+        <button type="submit" class="sr-only" tabindex="-1">Calcular cuota</button>
         <noscript><p class="note">Active JavaScript para usar la calculadora. Abajo encontrará tablas con cuotas ya calculadas.</p></noscript>
       </form>
 
@@ -247,7 +247,7 @@
       <ul>
         <li><strong>Tasa de 5.00% anual</strong> para viviendas de hasta 91 salarios mínimos (Q386,957.48) y <strong>5.50%</strong> para viviendas de más de 91 y hasta 170 salarios mínimos (Q722,887.60). La tasa depende del precio de venta, no del monto del préstamo.</li>
         <li><strong>Enganche mínimo de 5%</strong> y <strong>plazo de hasta 40 años</strong>.</li>
-        <li>Para guatemaltecos sin vivienda propia, de hasta 70 años, con ingresos de hasta seis salarios mínimos no agrícolas más la bonificación incentiva. Se pueden sumar ingresos familiares.</li>
+        <li>Para guatemaltecos de hasta 70 años que no tengan bienes inmuebles a su nombre, con ingresos de entre uno y seis salarios mínimos no agrícolas más la bonificación incentiva. Se pueden sumar ingresos familiares.</li>
         <li>Solo aplica a vivienda nueva de proyectos aliados al FHA. La tasa incluye el seguro del FHA (vida, hipoteca y desempleo por seis meses) y el crédito no cubre gastos notariales.</li>
         <li>Las deudas totales, incluida la nueva cuota, no deben superar 50% del ingreso.</li>
       </ul>
@@ -376,7 +376,11 @@
   var presetActivo = 'banco';
 
   function numero(v) {
-    var n = parseFloat(String(v).replace(/[^0-9.]/g, ''));
+    var t = String(v).replace(/[^0-9.,]/g, '');
+    // Acepta 1,000,000 y también 1.000.000 (puntos como separador de miles)
+    if (/^\d{1,3}(\.\d{3})+(,\d+)?$/.test(t)) { t = t.replace(/\./g, '').replace(',', '.'); }
+    else { t = t.replace(/,/g, ''); }
+    var n = parseFloat(t);
     return isFinite(n) ? n : 0;
   }
   function dinero(v) {
@@ -396,11 +400,17 @@
   }
   function calcular() {
     var precio = numero($('precio').value);
-    var eng = Math.min(Math.max(numero($('enganche').value), 0), 95);
+    var engIn = numero($('enganche').value), plazoIn = Math.round(numero($('plazo').value));
+    var eng = Math.min(Math.max(engIn, 0), 95);
     var tasa = Math.max(numero($('tasa').value), 0);
-    var anos = Math.min(Math.max(Math.round(numero($('plazo').value)), 1), 40);
+    var anos = Math.min(Math.max(plazoIn, 1), 40);
     var seguro = Math.max(numero($('seguro').value), 0);
     var rel = Math.min(Math.max(numero($('relacion').value), 1), 100);
+    var avisos = [];
+    if (precio <= 0) { avisos.push('Ingrese el precio de la vivienda.'); }
+    if (engIn > 95) { avisos.push('Se calculó con 95% de enganche, el máximo de la calculadora.'); }
+    if (plazoIn > 40) { avisos.push('Se calculó con 40 años, el plazo máximo de la calculadora.'); }
+    if (plazoIn < 1) { avisos.push('Se calculó con un plazo de 1 año.'); }
     var msg = '';
 
     if (presetActivo === 'mpc') {
@@ -408,9 +418,10 @@
       if (t === null) {
         msg = 'El precio supera el máximo de Mi Primera Casa (Q722,887.60). Se muestra el cálculo con 5.50% solo como referencia.';
         t = 5.5;
-      } else {
+      } else if (precio > 0) {
         msg = 'Mi Primera Casa: tasa de ' + t.toFixed(2) + '% por un precio ' + (t === 5 ? 'de hasta Q386,957.48.' : 'de más de Q386,957.48 y hasta Q722,887.60.');
       }
+      if (eng < 5) { avisos.push('Mi Primera Casa exige al menos 5% de enganche.'); }
       $('tasa').value = t;
       tasa = t;
     }
@@ -428,7 +439,7 @@
     $('r-enganche').textContent = dinero(precio - prestamo);
     $('r-ingreso').textContent = dinero(cuota / (rel / 100));
     $('r-intereses').textContent = dinero(cuotaBase * n - prestamo);
-    $('r-msg').textContent = msg;
+    $('r-msg').textContent = [msg].concat(avisos).filter(Boolean).join(' ');
   }
 
   document.querySelectorAll('.preset').forEach(function (b) {
@@ -464,6 +475,16 @@
   $('precio').addEventListener('blur', function () {
     var v = numero(this.value);
     this.value = v ? v.toLocaleString('en-US') : '';
+    calcular();
+  });
+  $('plazo').addEventListener('blur', function () {
+    var v = Math.round(numero(this.value));
+    this.value = Math.min(Math.max(v || 1, 1), 40);
+    calcular();
+  });
+  $('enganche').addEventListener('blur', function () {
+    this.value = Math.min(Math.max(numero(this.value), 0), 95);
+    calcular();
   });
 
   $('calc').addEventListener('submit', function (e) { e.preventDefault(); calcular(); });

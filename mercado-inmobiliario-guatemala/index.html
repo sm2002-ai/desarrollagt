@@ -141,8 +141,9 @@
       </div>
 
       <h2 id="indicadores">Indicadores clave</h2>
+      <p class="scroll-hint" aria-hidden="true">Deslice la tabla hacia los lados para ver todas las columnas →</p>
       <div class="table-wrap">
-        <table>
+        <table class="tabla-movil">
           <thead><tr><th scope="col" class="left">Indicador</th><th scope="col">Dato</th><th scope="col" class="left">Periodo</th><th scope="col" class="left">Fuente</th></tr></thead>
           <tbody>
             <tr><th scope="row">Tasa de interés líder de política monetaria</th><td class="num"><b>3.50%</b></td><td class="left">Decisión del 23 sep 2026; en ese nivel desde el 18 feb 2026 (antes 3.75%)</td><td class="left">Banco de Guatemala</td></tr>
@@ -154,7 +155,8 @@
             <tr><th scope="row">Remesas del año anterior</th><td class="num"><b>US$25,530.2 M</b></td><td class="left">2025 (+18.7% sobre 2024)</td><td class="left">Banco de Guatemala</td></tr>
             <tr><th scope="row">Crecimiento del PIB (estimación)</th><td class="num"><b>4.3%</b></td><td class="left">2026, revisado al alza desde 4.1%</td><td class="left">Banco de Guatemala</td></tr>
             <tr><th scope="row">Crecimiento del PIB (proyección)</th><td class="num"><b>4.0%</b></td><td class="left">2027</td><td class="left">Banco de Guatemala</td></tr>
-            <tr><th scope="row">Tipo de cambio de referencia</th><td class="num"><b>≈ Q7.63 por US$1</b></td><td class="left">Julio–agosto 2026 (Q7.6255 el 30 jul)</td><td class="left">Banco de Guatemala</td></tr>
+            <tr><th scope="row">Tipo de cambio de referencia</th><td class="num"><b>≈ Q7.64 por US$1</b></td><td class="left">Q7.64427, vigente el 28 oct 2026</td><td class="left">Banco de Guatemala</td></tr>
+            <tr><th scope="row">Impuestos a combustibles (IVA e IDP)</th><td class="num"><b>Suspendidos</b></td><td class="left">1 oct – 31 dic 2026 (Decreto 22-2026); vuelven el 1 ene 2027</td><td class="left">Congreso de la República</td></tr>
             <tr><th scope="row">Crédito Mi Primera Casa (FHA y CHN)</th><td class="num"><b>5.00%–5.50%</b></td><td class="left">Vigente; hasta 40 años, enganche desde 5%</td><td class="left">CHN</td></tr>
           </tbody>
         </table>
@@ -219,12 +221,12 @@
       <p class="note">Análisis de DesarrollaGT con base en los datos anteriores.</p>
       <h3>1. Crédito: planificar con tasas estables, no a la baja</h3>
       <p>La tasa líder lleva desde febrero en 3.50%. Con la inflación en 4.69%, en la parte alta del rango meta del Banguat, el espacio para nuevos recortes es menor. Para proyectar la demanda de compradores con crédito, conviene suponer tasas hipotecarias estables; DesarrollaGT usa 9% anual como supuesto base para crédito bancario en quetzales.</p>
-      <h3>2. Costos: la inflación de 2026 viene de alimentos y combustibles</h3>
-      <p>El alza de precios de agosto y septiembre estuvo empujada por alimentos y combustibles. Para un desarrollador, combustibles más caros se trasladan a fletes y materiales: revise presupuestos de obra y las cláusulas de ajuste de precio en contratos de preventa.</p>
+      <h3>2. Costos: alivio temporal en combustibles, con fecha de vencimiento</h3>
+      <p>El repunte de la inflación de agosto y septiembre vino de alimentos y combustibles. Desde el 1 de octubre y hasta el 31 de diciembre de 2026, el Decreto 22-2026 suspende el IVA y el IDP de los combustibles, lo que abarata fletes y operación de obra por ahora; el 1 de enero de 2027 esos impuestos vuelven. Si su presupuesto de obra se extiende a 2027, no lo calcule con los precios de combustible actuales y revise las cláusulas de ajuste de precio en contratos de preventa.</p>
       <h3>3. Demanda: las remesas crecen, pero más despacio que en 2025</h3>
       <p>De enero a septiembre de 2026 las remesas crecieron 5.5%, frente a 18.7% en todo 2025, y el Banguat proyecta 3% para 2027. Son una fuente importante de ingreso para muchos hogares guatemaltecos, por lo que un ritmo más moderado merece seguimiento en las proyecciones de absorción de proyectos.</p>
-      <h3>4. Vivienda social: Mi Primera Casa amplía quién califica</h3>
-      <p>El programa financia vivienda nueva de hasta Q722,887.60 al 5%–5.5% anual, a 40 años y con 5% de enganche. Una vivienda de Q350,000 queda en una cuota de unos Q1,603 al mes, lo que abre mercado a proyectos aliados al FHA en ese rango de precio. Calcule otros escenarios en la <a href="../calculadora-hipotecaria/">calculadora hipotecaria</a>.</p>
+      <h3>4. Vivienda social: cuotas accesibles con Mi Primera Casa</h3>
+      <p>El programa financia vivienda nueva de hasta Q722,887.60 al 5%–5.5% anual, con plazos de hasta 40 años y enganche desde 5%. Una vivienda de Q350,000, con 5% de enganche a 40 años, queda en una cuota de unos Q1,603 al mes, lo que abre mercado a proyectos aliados al FHA en ese rango de precio. Calcule otros escenarios en la <a href="../calculadora-hipotecaria/">calculadora hipotecaria</a>.</p>
       <h3>5. Economía: crecimiento por encima del potencial</h3>
       <p>El Banguat elevó su estimación de crecimiento para 2026 a 4.3% y proyecta 4.0% para 2027, por encima del crecimiento potencial de alrededor de 3.5% que cita la institución. Un entorno de empleo e ingresos en expansión sostiene la demanda de vivienda formal.</p>
 
@@ -269,7 +271,8 @@
         <li>Agencia Guatemalteca de Noticias, <a href="https://agn.gt/?p=573815" rel="noopener">Banguat revisa al alza el crecimiento de 2026 a 4.3%</a> y <a href="https://agn.gt/banguat-preve-crecimiento-economico-del-4-en-2027/" rel="noopener">prevé 4% en 2027</a>.</li>
         <li>Instituto Nacional de Estadística (INE), <a href="https://www.ine.gob.gt" rel="noopener">Índice de Precios al Consumidor</a>, septiembre de 2026 (cifras reportadas por <a href="https://www.riotimesonline.com/guatemala-inflation-september-2026/" rel="noopener">The Rio Times</a>, con base en Prensa Libre y La Hora) y agosto de 2026 (<a href="https://emisorasunidas.com/nacional/2026/09/08/inflacion-guatemala-alza-alimentos-combustibles-economia/" rel="noopener">Emisoras Unidas</a>).</li>
         <li>Crédito Hipotecario Nacional (CHN), <a href="https://www.chn.com.gt/wp-content/uploads/2026/08/Preguntas-Frecuentes-MPC-NUEVO.pdf" rel="noopener">preguntas frecuentes de Mi Primera Casa</a> (PDF).</li>
-        <li>Tipo de cambio de referencia: Banco de Guatemala, <a href="https://www.banguat.gob.gt" rel="noopener">banguat.gob.gt</a>.</li>
+        <li>Banco de Guatemala, <a href="https://www.banguat.gob.gt/tipo_cambio/" rel="noopener">tipo de cambio de referencia</a> (Q7.64427 vigente el 28 de octubre de 2026).</li>
+        <li>Agencia Guatemalteca de Noticias, <a href="https://agn.gt/?p=573948" rel="noopener">suspensión temporal del IVA y el IDP a los combustibles hasta el 31 de diciembre de 2026</a> (Decreto 22-2026).</li>
       </ul>
     </article>
 
@@ -337,9 +340,11 @@
     var caja = tarjeta.getBoundingClientRect();
     tip.querySelector('b').textContent = barra.getAttribute('data-valor');
     tip.querySelector('span').textContent = barra.getAttribute('data-mes');
-    tip.style.left = (marca.left + marca.width / 2 - caja.left) + 'px';
-    tip.style.top = (marca.top - caja.top - 8) + 'px';
     tip.style.display = 'block';
+    var mitad = tip.offsetWidth / 2;
+    var centro = marca.left + marca.width / 2 - caja.left;
+    tip.style.left = Math.min(Math.max(centro, mitad + 6), caja.width - mitad - 6) + 'px';
+    tip.style.top = (marca.top - caja.top - 8) + 'px';
   }
   function ocultar() { tip.style.display = 'none'; }
   tarjeta.querySelectorAll('.hcol').forEach(function (barra) {

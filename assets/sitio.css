@@ -23,7 +23,7 @@
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:84px}
 body{margin:0;font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--text);background:var(--bg);overflow-x:hidden}
 img,svg{max-width:100%;display:block}
 a{color:var(--blue)}
@@ -351,3 +351,10 @@ h1,h2,.price,.k-val,.stat b,.out-big,.quote,.foot-brand{font-variant-numeric:lin
 .chart-card details{margin-top:6px}
 .chart-card summary{cursor:pointer;font-size:14px;font-weight:700;color:var(--blue);padding:6px 0}
 .prose .eyebrow{color:var(--gold-ink);font-size:12px}
+@media (max-width:760px){
+  .tabla-movil{min-width:560px}
+  .tabla-movil thead th:first-child,.tabla-movil tbody th[scope="row"]{position:sticky;left:0;z-index:1}
+  .tabla-movil thead th:first-child{background:var(--dark)}
+  .tabla-movil tbody th[scope="row"]{background:#fff;min-width:130px;box-shadow:2px 0 0 var(--line)}
+}
+.prose .scroll-hint{font-size:13px;color:var(--muted)}
